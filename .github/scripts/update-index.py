@@ -63,11 +63,25 @@ def main() -> int:
             skipped_count += 1
             continue
 
-        # Dataset files live at data/<dataset_name>/<file>
+        # Dataset files normally live at data/<dataset_name>/<file>, but the
+        # JSON key and the on-disk directory name are not required to match
+        # (e.g. the "hsn-common" dataset lives in data/hsn/). Try the
+        # conventional path first; if missing, fall back to a single-file
+        # search across data/ subdirectories.
         dataset_path = DATA_DIR / dataset_name / file_name
         if not dataset_path.exists():
-            errors.append(f"missing file: {dataset_path}")
-            continue
+            matches = [p for p in DATA_DIR.glob(f"*/{file_name}") if p.is_file()]
+            if len(matches) == 1:
+                dataset_path = matches[0]
+            elif len(matches) == 0:
+                errors.append(f"missing file: {file_name} (searched data/*/)")
+                continue
+            else:
+                errors.append(
+                    f"ambiguous file: {file_name} found in multiple locations: "
+                    + ", ".join(str(p) for p in matches)
+                )
+                continue
 
         try:
             new_hash = sha256_file(dataset_path)
