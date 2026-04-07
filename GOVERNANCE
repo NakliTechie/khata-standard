@@ -1,0 +1,122 @@
+# Governance
+
+How decisions get made in the `khata-standard` repo.
+
+---
+
+## Current state (Phase 0 — bootstrap)
+
+The repo is in its initial phase. Chirag Patnaik ([@NakliTechie](https://github.com/NakliTechie)) is the sole maintainer. Every merge decision is his. This is normal for a new standard and will remain so until there's a reason to change it.
+
+During this phase:
+
+- All PRs are reviewed and merged by the sole maintainer
+- Reference data changes must include provenance (see CONTRIBUTING.md), even if self-authored
+- Spec changes follow the RFC process below, even if self-authored — the discipline matters more than the ceremony
+- Issues are triaged as time allows; complex matters may sit for a while
+
+Being in Phase 0 is not a limitation to apologize for. Most successful open standards (and most unsuccessful ones) start this way. The goal is to ship something correct and useful, then let governance evolve as participation grows.
+
+---
+
+## How decisions are made
+
+### Reference data updates
+Maintainer reviews the PR against the CONTRIBUTING.md checklist:
+- Is the source authoritative?
+- Is provenance complete?
+- Does the JSON validate against the schema?
+- Is the effective date correct?
+- Does the change match what the source says?
+
+If yes to all, merge. If any answer is unclear, ask in the PR and wait for resolution.
+
+There is no voting. There is no consensus-seeking for routine data updates. The maintainer's job is to be a careful gatekeeper, not a democratic process.
+
+### Reference data corrections
+Same process as updates. Corrections are often time-sensitive (wrong data is actively misleading implementations) and usually land within a day or two of being reported.
+
+### Small spec clarifications
+Wording fixes, typo corrections, improved examples, and other non-semantic changes can be merged as direct PRs by the maintainer without ceremony.
+
+### Semantic spec changes (RFC process)
+Changes that affect what a valid `.khata` file looks like, add required fields, change the audit log mechanism, or touch format versioning go through a lightweight RFC process:
+
+1. **Open an issue** tagged `rfc` describing the proposed change, the motivation, the alternatives considered, and any implementation notes
+2. **Discussion period** of at least two weeks, during which the maintainer and any interested contributors comment
+3. **Revision based on discussion** — the proposer updates the RFC to reflect feedback
+4. **Decision** — the maintainer decides to accept, reject, or request further revision
+5. **Implementation** — accepted RFCs become PRs against `spec/` with a reference to the RFC issue
+
+The two-week minimum exists to give people who aren't checking this repo constantly a chance to notice and respond. There is no maximum — important RFCs can take months.
+
+### Breaking changes
+Format-breaking changes are approached with extreme skepticism. The whole value proposition of `.khata` is that the format is stable and your files will keep working. Breaking that promise requires overwhelming justification — usually a security issue or a fundamental design flaw.
+
+If a breaking change is genuinely needed:
+
+1. Open an issue tagged `rfc breaking-change`
+2. Proposal must include a migration path for existing files
+3. Discussion period of at least one month
+4. Maintainer approval required
+5. Breaking changes bump the format major version and are gated by version negotiation
+
+In practice, the first major version (`1.0`) should absorb most of the kinks and subsequent major versions should be rare.
+
+---
+
+## How the maintainer team grows
+
+As participation grows, the sole-maintainer model becomes a bottleneck and a risk. Here's how it scales:
+
+### Phase 1 — Trusted reviewers
+When reference data updates outpace the sole maintainer's capacity, or when domain expertise is needed that the maintainer lacks, trusted reviewers are added. A trusted reviewer can review and comment on PRs but cannot merge; they give the maintainer a second pair of eyes for decisions in their domain (e.g., a GST-focused CA reviewing rate changes, a TDS specialist reviewing section updates).
+
+Trusted reviewers are invited by the maintainer. There is no application process; invitations go out when the maintainer knows someone well enough to trust their review and that person has demonstrated both domain expertise and good judgment.
+
+### Phase 2 — Co-maintainers
+When the repo is clearly outgrowing a single merger, co-maintainers are added. A co-maintainer can merge PRs within their domain. Decisions that affect the whole repo (spec changes, RFCs, governance changes) still require consensus among maintainers.
+
+Co-maintainers are added by invitation from existing maintainers, with consensus from all existing maintainers. A co-maintainer who becomes inactive for six months is moved to emeritus status and loses merge rights (but keeps credit in the project history).
+
+### Phase 3 — Steering committee
+Only if the standard is adopted beyond Bahi and has multiple implementations in active use. A small steering committee (3-5 people) would handle cross-cutting decisions: major spec versions, significant governance changes, conflict resolution. Routine work stays with individual maintainers.
+
+Steering committee formation would itself go through an RFC. It's deliberately left unspecified here because it's hypothetical until participation actually reaches that scale.
+
+---
+
+## Conflict of interest
+
+The maintainer is also the primary developer of Bahi, the first `.khata` implementation. This is a real conflict of interest that deserves transparent acknowledgment.
+
+Mitigations:
+
+- **Format changes don't get special treatment for Bahi's convenience.** If a proposed spec change would make Bahi's implementation easier but would burden other (hypothetical) implementations, that's still a bad change.
+- **Reference data is factual, not discretionary.** Tax rates are what the government publishes, not what's convenient for Bahi. The provenance requirement is the safeguard.
+- **The format's purpose is to outlive Bahi.** If a decision would strengthen Bahi at the cost of the format's independence, that's the wrong decision.
+
+If someone suspects a conflict of interest is affecting a specific decision, please open an issue. It will be taken seriously.
+
+---
+
+## License and ownership
+
+The repo is licensed permissively (MIT for spec and code, CC-BY for data). The maintainer does not own the format in any legal sense — forks are explicitly welcome.
+
+If the sole maintainer ever becomes unresponsive, uncontactable, or deliberately harmful to the standard, the community is free to fork and continue. This is not a contingency plan maintainers love to discuss, but it's the honest endgame for any single-person-dependent project.
+
+---
+
+## Contact
+
+For governance-related questions or concerns that don't fit an issue:
+
+- GitHub issues tagged `governance`
+- Direct contact via the maintainer's public profiles
+
+---
+
+## Changes to this document
+
+Governance changes follow the RFC process. The current document is version 0.1 (bootstrap). It will be updated as the project matures.
