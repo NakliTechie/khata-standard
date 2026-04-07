@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>khata-standard — open file format for Indian accounting</title>
+  <meta name="description" content="The open file format and reference data standard for browser-native, local-first Indian accounting. Reference data CDN for Bahi and any other .khata implementation.">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #fafaf9;
+      --fg: #1c1917;
+      --muted: #78716c;
+      --accent: #7c2d12;
+      --border: #e7e5e4;
+      --code-bg: #f5f5f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1917;
+        --fg: #fafaf9;
+        --muted: #a8a29e;
+        --accent: #fb923c;
+        --border: #292524;
+        --code-bg: #292524;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    h1 {
+      font-size: 1.875rem;
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+    }
+    .tagline {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    p, li { color: var(--fg); }
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+    a:hover { text-decoration-thickness: 2px; }
+    code {
+      font-family: "SF Mono", Monaco, "Cascadia Code", Consolas, monospace;
+      background: var(--code-bg);
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: var(--code-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      border: 1px solid var(--border);
+    }
+    pre code { background: none; padding: 0; }
+    .status {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+      background: var(--code-bg);
+    }
+    .status p:first-child { margin-top: 0; font-weight: 600; }
+    .status p:last-child { margin-bottom: 0; }
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>khata-standard</h1>
+  <p class="tagline">The open file format and reference data source for browser-native, local-first Indian accounting.</p>
+
+  <div class="status">
+    <p>Status: early bootstrap</p>
+    <p>This standard is under active development alongside its first reference implementation, <a href="https://github.com/NakliTechie/bahi">Bahi</a>. The format version 1.0 will be frozen once Bahi reaches beta. Some reference datasets are still placeholders — see <a href="data/SEED-NOTES.md">SEED-NOTES.md</a> before using any data for real tax calculations.</p>
+  </div>
+
+  <h2>What is this?</h2>
+  <p><code>.khata</code> is a file format for Indian accounting records — invoices, ledgers, GST data, customers, vendors, attachments — as a single portable file on your own computer. No servers, no accounts, no sync. This repository is the authoritative source for the format specification and the reference data that any <code>.khata</code> implementation needs (GST rates, HSN codes, state lists, TDS/TCS sections, and more).</p>
+
+  <h2>Reference data CDN</h2>
+  <p>Applications fetch reference data from these URLs:</p>
+  <pre><code>https://naklitechie.github.io/khata-standard/data/index.json
+https://naklitechie.github.io/khata-standard/data/states/states-20250101.json
+https://naklitechie.github.io/khata-standard/data/gst-rates/gst-rates-20170701.json
+... and so on</code></pre>
+  <p>The <code>index.json</code> file is the manifest — start there to see what's available and current versions. Every dataset file has an <code>sha256:</code> hash in the index; applications should verify downloaded files against these hashes before caching.</p>
+
+  <h2>Documentation</h2>
+  <ul>
+    <li><a href="https://github.com/NakliTechie/khata-standard/blob/main/README.md">README</a> — project overview</li>
+    <li><a href="https://github.com/NakliTechie/khata-standard/blob/main/spec/khata-format.md">Format specification</a> — the <code>.khata</code> file format</li>
+    <li><a href="https://github.com/NakliTechie/khata-standard/blob/main/spec/audit-log.md">Audit log spec</a> — tamper-evident change tracking</li>
+    <li><a href="https://github.com/NakliTechie/khata-standard/blob/main/data/SEED-NOTES.md">Seed data notes</a> — what's stable vs placeholder</li>
+    <li><a href="https://github.com/NakliTechie/khata-standard/blob/main/CONTRIBUTING.md">Contributing</a> — how to submit data updates and spec changes</li>
+    <li><a href="https://github.com/NakliTechie/khata-standard/blob/main/GOVERNANCE.md">Governance</a> — how decisions are made</li>
+  </ul>
+
+  <h2>Use in Bahi</h2>
+  <p><a href="https://github.com/NakliTechie/bahi">Bahi</a> is the first reference implementation of the <code>.khata</code> format. Bahi fetches from the CDN URLs above and verifies data integrity via the manifest hashes. Bahi is also the driving force behind the format's evolution, but the format itself is deliberately not owned by Bahi — anyone can build a reader or writer.</p>
+
+  <h2>License</h2>
+  <p>Specification and code are under the <a href="https://github.com/NakliTechie/khata-standard/blob/main/LICENSE">MIT License</a>. Reference data in <code>data/</code> is under the <a href="https://github.com/NakliTechie/khata-standard/blob/main/LICENSE-data">Creative Commons Attribution 4.0 License</a>. Fork it, build on it, commercialize on top of it. The goal is for the format to be useful, not to control it.</p>
+
+  <footer>
+    <p>Maintained by <a href="https://github.com/NakliTechie">Chirag Patnaik</a>. Part of the <a href="https://naklitechie.com">NakliTechie</a> portfolio.</p>
+    <p><a href="https://github.com/NakliTechie/khata-standard">View source on GitHub →</a></p>
+  </footer>
+</body>
+</html>
