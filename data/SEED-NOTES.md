@@ -119,22 +119,37 @@ Six compensation cess entries covering tobacco, pan masala, aerated waters, smal
 
 ---
 
-## hsn-common — PLACEHOLDER ⚠️
+## hsn-common — STARTER (with staleness caveat) ⚠️
 
-**File:** `data/hsn-common/hsn-common-20250101.json`
+**Files:**
+- `data/hsn-common/hsn-common-20230401.json` — imported from CBIC (2023-04-01 snapshot)
+- `data/hsn-common/hsn-common-20250101.json` — original placeholder, retained for reference
 
-Ten illustrative HSN entries and five illustrative SAC entries covering common categories. This is a structural skeleton to unblock development, **not** a usable HSN reference.
+The CBIC import was produced by `tools/scrape-cbic-hsn.py` from the consolidated GST rate schedule at https://cbic-gst.gov.in/gst-goods-services-rates.html, which the page itself dates "as on 01.04.2023". The import contains:
 
-**What a real release needs:** a curated top-2000 HSN code set covering ~95% of SMB transaction volume, with accurate rate assignments as of the current GST Council rate schedule.
+- ~1,500 goods entries with HSN → rate-band mappings
+- ~80 SAC entries (services with extractable headings and standard band rates)
+- ~80 compensation cess entries (free-text `cess` field; the schema does not yet structure compound rates)
+- ~40 warnings covering edge cases (1.5% diamond schedule, "Any chapter" wildcards, construction conditional rates, etc.)
 
-**Sourcing options:**
-1. Scrape the CBIC GST rate schedule from https://cbic-gst.gov.in/gst-goods-services-rates.html (public source, requires cleaning)
-2. Purchase a compliance database from a commercial provider (costs money but is current)
-3. Partner with an existing accounting tool that has already sourced and validated the list (potentially time-saving but requires a partnership)
+**Staleness disclosure:** the CBIC source page is dated 1 April 2023. GST Council meetings since then may have moved HSN codes between rate bands, introduced or withdrawn cess on specific items, or otherwise altered the schedule. **The imported data is a reference baseline, not a current compliance source.** Implementations should:
 
-**Bahi behavior until this is replaced:** flag unknown HSN codes as "not in bundled set" and prompt the user to enter the rate manually. The rate handling in §3.7 already supports this case because rates are looked up by (HSN, date) and an unknown lookup falls through to user input.
+1. Treat rates as approximate, not current
+2. Verify any HSN-specific rate against the latest GST Council notification before live tax calculations
+3. Watch for newer dated `hsn-common-*.json` files as the scraper is re-run after future Council meetings
 
-**Priority:** HIGH — this is the single biggest gap in the seed data and blocks real SMB use.
+**License and provenance:** the imported data is sourced under [GODL-India](https://www.data.gov.in/Godl). See `provenance/2026-04-07-cbic-hsn-import/` for the full evidence trail (raw HTML snapshot, source.md, diff summary, scraper log).
+
+**Status:** `starter` — real, sourced, and attributed, but stale and unverified against current rates. Will move to `stable` only after a maintainer or CA reconciles it against a current GST Council decision (or the scraper is re-run against a more current CBIC source).
+
+**Sourcing options for future updates:**
+1. Re-run `tools/scrape-cbic-hsn.py` after CBIC publishes an updated consolidated schedule (preferred — same provenance pattern, no new licensing concerns)
+2. Purchase a commercial compliance database (rejected in #11 due to redistribution licensing)
+3. Open-source partnership (rejected in #11 because the available datasets do not include rate fields)
+
+**Implementation behavior until verified-current data is available:** flag any HSN code where the bundled rate may be stale, and surface the staleness disclosure to the user. The rate handling in §3.7 already supports per-(HSN, date) lookups so a future implementation can layer corrections on top of this baseline.
+
+**Priority:** still HIGH for currency. The structural gap is closed; the temporal gap (April 2023 → today) is now the open question and is tracked in #1.
 
 ---
 
