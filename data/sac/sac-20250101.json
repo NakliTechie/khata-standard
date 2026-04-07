@@ -1,0 +1,87 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "SAC (Services Accounting Code) list — STARTER PLACEHOLDER covering common service categories. NOT a usable full SAC reference and MUST be replaced before production use.",
+  "publishedOn": "2025-01-01",
+  "source": "PLACEHOLDER — needs authoritative sourcing from CBIC GST service rate schedule",
+  "status": "PLACEHOLDER — REPLACE BEFORE PRODUCTION USE",
+  "notes": "All SAC codes begin with 99 under the Indian GST classification. This file contains a small illustrative set of the most commonly used SAC codes for service businesses. A real release needs the complete SAC list from the CBIC service rate schedule. Until then, Bahi can fall back to the SAC entries embedded in hsn-common for the most common cases.",
+  "entries": [
+    {
+      "sac": "9954",
+      "description": "Construction services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "note": "Various construction services have different rates; verify per sub-category"
+    },
+    {
+      "sac": "9961",
+      "description": "Services in wholesale trade",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9963",
+      "description": "Accommodation, food and beverage services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "note": "Hotel accommodation varies: 5%, 12%, 18% based on tariff; restaurants 5% without ITC or 18% with ITC"
+    },
+    {
+      "sac": "9964",
+      "description": "Passenger transport services",
+      "rateId": "gst-5-merit",
+      "rateAsOf": "2025-01-01",
+      "note": "Economy transport at 5%; AC/first-class at 12%; ride-hailing varies"
+    },
+    {
+      "sac": "9965",
+      "description": "Goods transport services",
+      "rateId": "gst-5-merit",
+      "rateAsOf": "2025-01-01",
+      "note": "GTA services: 5% without ITC (reverse charge) or 12% with ITC; rail freight different"
+    },
+    {
+      "sac": "9971",
+      "description": "Financial services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9972",
+      "description": "Real estate services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9983",
+      "description": "Other professional, technical and business services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9984",
+      "description": "Telecommunication, broadcasting and information supply services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9985",
+      "description": "Support services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9987",
+      "description": "Maintenance, repair and installation (except construction) services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01"
+    },
+    {
+      "sac": "9988",
+      "description": "Manufacturing services on physical inputs (goods) owned by others (job work)",
+      "rateId": "gst-12-standard-lower",
+      "rateAsOf": "2025-01-01",
+      "note": "Job work on textiles 5%; most other job work 12% or 18%"
+    }
+  ]
+}

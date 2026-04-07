@@ -1,0 +1,129 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "GST Reverse Charge Mechanism (RCM) supply categories under Section 9(3) and 9(4) of CGST Act",
+  "publishedOn": "2025-01-01",
+  "source": "CBIC Notification No. 13/2017-Central Tax (Rate) and subsequent amendments; CGST Act Section 9(3) for notified categories and 9(4) for unregistered supplier scenario",
+  "notes": "This is a curated list of the most commonly encountered RCM categories for small and medium businesses. Section 9(3) of CGST Act empowers the government to notify specific supplies where the recipient pays GST instead of the supplier. Section 9(4) applies to inward supplies from unregistered suppliers and has been restricted multiple times since 2017. Categories are added and modified by CBIC notifications — verify against latest notifications before production use.",
+  "categories": [
+    {
+      "rcmId": "rcm-gta",
+      "description": "Goods Transport Agency (GTA) services",
+      "applicability": "Transportation of goods by road by a GTA, where the recipient is a factory, company, partnership firm, society, cooperative society, registered person, or casual taxable person",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 1",
+      "rateNote": "5% (with no ITC) or 12% (with ITC) — rate choice is the supplier's option if declared",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-legal-advocate",
+      "description": "Legal services by an advocate or firm of advocates",
+      "applicability": "Legal services provided by an individual advocate, senior advocate, or firm of advocates to any business entity",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 2",
+      "rateNote": "18%",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-arbitral",
+      "description": "Services by an arbitral tribunal",
+      "applicability": "Services supplied by an arbitral tribunal to a business entity",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 3",
+      "rateNote": "18%",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-sponsorship",
+      "description": "Sponsorship services",
+      "applicability": "Sponsorship provided to any body corporate or partnership firm",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 4",
+      "rateNote": "18%",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-govt-services",
+      "description": "Services by central government, state government, union territory, or local authority (specified categories)",
+      "applicability": "Specified services by government excluding renting of immovable property, postal services, transport of goods/passengers, and services in relation to aircraft or vessel",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 5",
+      "rateNote": "Varies by service",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-director",
+      "description": "Services by a director of a company or body corporate (other than as employee)",
+      "applicability": "Director's sitting fees, commission, or other remuneration paid by a company to its director, where such payment is not as employee (Section 192 TDS does not apply)",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 6",
+      "rateNote": "18%",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-insurance-agent",
+      "description": "Services by an insurance agent to insurance business",
+      "applicability": "Insurance agent commission paid by an insurance company",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 7",
+      "rateNote": "18%",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-recovery-agent",
+      "description": "Services by a recovery agent to banks or financial institutions",
+      "applicability": "Recovery agent services supplied to a banking company, financial institution, or non-banking financial company",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 8",
+      "rateNote": "18%",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-author-copyright",
+      "description": "Transfer of copyright by author or music composer or photographer or artist (specified cases)",
+      "applicability": "Transfer or permitting the use of copyright in relation to literary, dramatic, musical, or artistic work",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) Serial 9",
+      "rateNote": "12% or 18% depending on work type",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-import-service",
+      "description": "Import of services",
+      "applicability": "Any service imported by a person located in India from a person located outside India",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) (covered under integrated tax under IGST Act)",
+      "rateNote": "Rate as applicable to the service",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-security-services",
+      "description": "Security services (other than by body corporate)",
+      "applicability": "Security services (services provided by way of supply of security personnel) provided by any person other than a body corporate to a registered person",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) as amended by 29/2018 effective 1 January 2019",
+      "rateNote": "18%",
+      "validFrom": "2019-01-01",
+      "validTo": null
+    },
+    {
+      "rcmId": "rcm-rent-motor-vehicle",
+      "description": "Renting of motor vehicle (specified cases)",
+      "applicability": "Renting of any motor vehicle designed to carry passengers, where the cost of fuel is included, by any person other than a body corporate to a body corporate",
+      "section": "9(3)",
+      "notification": "13/2017-Central Tax (Rate) as amended effective 1 October 2019",
+      "rateNote": "5% (with limited ITC)",
+      "validFrom": "2019-10-01",
+      "validTo": null
+    }
+  ]
+}

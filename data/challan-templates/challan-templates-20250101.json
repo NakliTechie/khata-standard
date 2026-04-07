@@ -1,0 +1,236 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "Tax payment challan templates — field definitions for generating printable challans. Covers the most common forms.",
+  "publishedOn": "2025-01-01",
+  "source": "CBIC, CBDT, EPFO, ESIC, and state tax department published forms",
+  "notes": "Each template defines the field structure and metadata for a specific challan form. The application uses these to render printable PDFs matching the official layout. Real form PDFs, field coordinates, and reference numbers should be verified against the current official versions before production use. This starter set covers ITNS 280/281/282/283, GST PMT-06, GST DRC-03, PF ECR, ESIC, and Maharashtra PTRC/PTEC. Additional state-specific forms (Karnataka, Tamil Nadu, West Bengal, etc.) and other challans can be added as needed.",
+  "templates": [
+    {
+      "templateId": "itns-280",
+      "name": "ITNS 280 — Income Tax (Advance Tax, Self-Assessment Tax, Tax on Regular Assessment)",
+      "department": "CBDT (Income Tax)",
+      "description": "Challan for payment of income tax by individuals, HUFs, companies, and firms",
+      "status": "active",
+      "fields": [
+        { "id": "pan", "label": "Permanent Account Number (PAN)", "type": "text", "required": true, "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]$" },
+        { "id": "name", "label": "Full Name", "type": "text", "required": true },
+        { "id": "address", "label": "Complete Address with City and State", "type": "textarea", "required": true },
+        { "id": "pincode", "label": "Pin Code", "type": "text", "required": true, "pattern": "^[0-9]{6}$" },
+        { "id": "assessmentYear", "label": "Assessment Year", "type": "select", "required": true, "options": "fy-list" },
+        { "id": "taxType", "label": "Type of Payment", "type": "select", "required": true, "options": [
+          { "code": "100", "label": "Advance Tax" },
+          { "code": "102", "label": "Surtax" },
+          { "code": "106", "label": "Tax on Distributed Profits of Domestic Companies" },
+          { "code": "107", "label": "Tax on Distributed Income to Unit Holders" },
+          { "code": "300", "label": "Self-Assessment Tax" },
+          { "code": "400", "label": "Tax on Regular Assessment" }
+        ]},
+        { "id": "payeeCode", "label": "Payee Code (for companies / non-companies)", "type": "select", "required": true, "options": [
+          { "code": "0020", "label": "Company" },
+          { "code": "0021", "label": "Non-Company (Individual, HUF, Firm, etc.)" }
+        ]},
+        { "id": "income", "label": "Income Tax", "type": "amount", "required": true },
+        { "id": "surcharge", "label": "Surcharge", "type": "amount" },
+        { "id": "cess", "label": "Education Cess", "type": "amount" },
+        { "id": "interest", "label": "Interest", "type": "amount" },
+        { "id": "penalty", "label": "Penalty", "type": "amount" },
+        { "id": "other", "label": "Others", "type": "amount" },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "totalInWords", "label": "Total in Words", "type": "text_computed" },
+        { "id": "bank", "label": "Bank Name and Branch", "type": "text" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "itns-281",
+      "name": "ITNS 281 — TDS / TCS",
+      "department": "CBDT (Income Tax)",
+      "description": "Challan for payment of TDS deducted and TCS collected",
+      "status": "active",
+      "fields": [
+        { "id": "tan", "label": "Tax Deduction Account Number (TAN)", "type": "text", "required": true, "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$" },
+        { "id": "name", "label": "Full Name of Deductor/Collector", "type": "text", "required": true },
+        { "id": "address", "label": "Complete Address", "type": "textarea", "required": true },
+        { "id": "pincode", "label": "Pin Code", "type": "text", "required": true, "pattern": "^[0-9]{6}$" },
+        { "id": "natureOfPayment", "label": "Nature of Payment (Section)", "type": "select", "required": true, "options": "tds-sections" },
+        { "id": "assessmentYear", "label": "Assessment Year", "type": "select", "required": true, "options": "fy-list" },
+        { "id": "payeeType", "label": "Deductees Type", "type": "select", "required": true, "options": [
+          { "code": "0020", "label": "Company" },
+          { "code": "0021", "label": "Non-Company" }
+        ]},
+        { "id": "income", "label": "Income Tax", "type": "amount", "required": true },
+        { "id": "surcharge", "label": "Surcharge", "type": "amount" },
+        { "id": "cess", "label": "Education Cess", "type": "amount" },
+        { "id": "interest", "label": "Interest", "type": "amount" },
+        { "id": "penalty", "label": "Penalty (Fee u/s 234E)", "type": "amount" },
+        { "id": "other", "label": "Others", "type": "amount" },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "totalInWords", "label": "Total in Words", "type": "text_computed" },
+        { "id": "bank", "label": "Bank Name and Branch", "type": "text" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "itns-282",
+      "name": "ITNS 282 — Securities Transaction Tax / Hotel Receipts Tax / Interest Tax / Expenditure Tax / Estate Duty / Wealth Tax / Gift Tax",
+      "department": "CBDT (Income Tax)",
+      "description": "Challan for payment of other direct taxes. Many of these taxes are legacy or abolished (wealth tax, gift tax). Retained for backward compatibility.",
+      "status": "legacy",
+      "note": "Primarily used today for Securities Transaction Tax (STT)",
+      "fields": [
+        { "id": "pan", "label": "PAN / TAN", "type": "text", "required": true },
+        { "id": "name", "label": "Full Name", "type": "text", "required": true },
+        { "id": "address", "label": "Address", "type": "textarea", "required": true },
+        { "id": "assessmentYear", "label": "Assessment Year", "type": "select", "required": true, "options": "fy-list" },
+        { "id": "natureOfPayment", "label": "Nature of Payment", "type": "text", "required": true },
+        { "id": "amount", "label": "Amount", "type": "amount", "required": true },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "totalInWords", "label": "Total in Words", "type": "text_computed" },
+        { "id": "bank", "label": "Bank Name and Branch", "type": "text" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "gst-pmt-06",
+      "name": "GST PMT-06 — Payment of Tax, Interest, Penalty and Other Dues",
+      "department": "CBIC (GST)",
+      "description": "Challan for payment of GST liability through the electronic cash ledger",
+      "status": "active",
+      "fields": [
+        { "id": "gstin", "label": "GSTIN", "type": "text", "required": true, "pattern": "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$" },
+        { "id": "name", "label": "Legal Name", "type": "text", "required": true },
+        { "id": "address", "label": "Address", "type": "textarea" },
+        { "id": "periodFrom", "label": "Tax Period From", "type": "date", "required": true },
+        { "id": "periodTo", "label": "Tax Period To", "type": "date", "required": true },
+        { "id": "cgstTax", "label": "CGST - Tax", "type": "amount" },
+        { "id": "cgstInterest", "label": "CGST - Interest", "type": "amount" },
+        { "id": "cgstPenalty", "label": "CGST - Penalty", "type": "amount" },
+        { "id": "cgstFee", "label": "CGST - Fee", "type": "amount" },
+        { "id": "cgstOther", "label": "CGST - Other", "type": "amount" },
+        { "id": "sgstTax", "label": "SGST/UTGST - Tax", "type": "amount" },
+        { "id": "sgstInterest", "label": "SGST/UTGST - Interest", "type": "amount" },
+        { "id": "sgstPenalty", "label": "SGST/UTGST - Penalty", "type": "amount" },
+        { "id": "sgstFee", "label": "SGST/UTGST - Fee", "type": "amount" },
+        { "id": "sgstOther", "label": "SGST/UTGST - Other", "type": "amount" },
+        { "id": "igstTax", "label": "IGST - Tax", "type": "amount" },
+        { "id": "igstInterest", "label": "IGST - Interest", "type": "amount" },
+        { "id": "igstPenalty", "label": "IGST - Penalty", "type": "amount" },
+        { "id": "igstFee", "label": "IGST - Fee", "type": "amount" },
+        { "id": "igstOther", "label": "IGST - Other", "type": "amount" },
+        { "id": "cessTax", "label": "Cess - Tax", "type": "amount" },
+        { "id": "cessInterest", "label": "Cess - Interest", "type": "amount" },
+        { "id": "cessPenalty", "label": "Cess - Penalty", "type": "amount" },
+        { "id": "cessFee", "label": "Cess - Fee", "type": "amount" },
+        { "id": "cessOther", "label": "Cess - Other", "type": "amount" },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "totalInWords", "label": "Total in Words", "type": "text_computed" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "gst-drc-03",
+      "name": "GST DRC-03 — Intimation of payment made voluntarily or made against the show cause notice or statement",
+      "department": "CBIC (GST)",
+      "description": "Challan for voluntary payment of GST liability identified by the taxpayer or in response to a departmental notice",
+      "status": "active",
+      "fields": [
+        { "id": "gstin", "label": "GSTIN", "type": "text", "required": true },
+        { "id": "name", "label": "Legal Name", "type": "text", "required": true },
+        { "id": "paymentType", "label": "Cause of Payment", "type": "select", "required": true, "options": [
+          { "code": "voluntary", "label": "Voluntary" },
+          { "code": "scn", "label": "Against Show Cause Notice" },
+          { "code": "statement", "label": "Against Statement" },
+          { "code": "audit", "label": "Audit Findings" },
+          { "code": "investigation", "label": "Investigation" },
+          { "code": "other", "label": "Other" }
+        ]},
+        { "id": "periodFrom", "label": "Period From", "type": "date", "required": true },
+        { "id": "periodTo", "label": "Period To", "type": "date", "required": true },
+        { "id": "taxPaid", "label": "Tax Paid (CGST/SGST/IGST/Cess breakdown)", "type": "amount", "required": true },
+        { "id": "interestPaid", "label": "Interest Paid", "type": "amount" },
+        { "id": "penaltyPaid", "label": "Penalty Paid", "type": "amount" },
+        { "id": "remarks", "label": "Remarks", "type": "textarea" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "pf-ecr",
+      "name": "EPFO Electronic Challan cum Return (ECR)",
+      "department": "EPFO",
+      "description": "Summary challan for provident fund contributions paid to EPFO. ECR upload is done via the EPFO unified portal; this template is for maintaining a printable summary record.",
+      "status": "active",
+      "note": "Actual ECR submission happens via the EPFO portal, not through a printed challan. This template is for internal record-keeping.",
+      "fields": [
+        { "id": "establishmentCode", "label": "Establishment Code", "type": "text", "required": true },
+        { "id": "establishmentName", "label": "Establishment Name", "type": "text", "required": true },
+        { "id": "wageMonth", "label": "Wage Month", "type": "month", "required": true },
+        { "id": "numEmployees", "label": "Number of Employees", "type": "number", "required": true },
+        { "id": "totalWages", "label": "Total Wages", "type": "amount", "required": true },
+        { "id": "epfEmployee", "label": "EPF Employee Contribution (12%)", "type": "amount" },
+        { "id": "epfEmployer", "label": "EPF Employer Contribution", "type": "amount" },
+        { "id": "epsEmployer", "label": "EPS Employer Contribution (8.33%)", "type": "amount" },
+        { "id": "edliEmployer", "label": "EDLI Employer Contribution", "type": "amount" },
+        { "id": "adminChargesA", "label": "Admin Charges A/c No. 2", "type": "amount" },
+        { "id": "adminChargesB", "label": "EDLI Admin Charges A/c No. 22", "type": "amount" },
+        { "id": "total", "label": "Total Challan Amount", "type": "amount_computed" },
+        { "id": "totalInWords", "label": "Total in Words", "type": "text_computed" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "esic-challan",
+      "name": "ESIC Contribution Challan",
+      "department": "ESIC",
+      "description": "Challan for Employees' State Insurance contributions",
+      "status": "active",
+      "note": "Actual ESIC payment happens via the ESIC portal. This template is for internal record-keeping.",
+      "fields": [
+        { "id": "employerCode", "label": "Employer's Code Number", "type": "text", "required": true },
+        { "id": "establishmentName", "label": "Name of the Establishment", "type": "text", "required": true },
+        { "id": "contributionPeriod", "label": "Contribution Period", "type": "month", "required": true },
+        { "id": "numEmployees", "label": "Number of Employees", "type": "number", "required": true },
+        { "id": "totalWages", "label": "Total Wages (below ₹21,000)", "type": "amount", "required": true },
+        { "id": "employeeContribution", "label": "Employee Contribution (0.75%)", "type": "amount" },
+        { "id": "employerContribution", "label": "Employer Contribution (3.25%)", "type": "amount" },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "mh-ptrc",
+      "name": "Maharashtra PTRC (Professional Tax Registration Certificate) Challan",
+      "department": "Maharashtra State Tax",
+      "description": "Monthly/quarterly challan for professional tax deducted from employees' salaries (Employer's liability)",
+      "status": "active",
+      "note": "For Maharashtra only. Other states have their own forms (Karnataka PT, Tamil Nadu PT, West Bengal PT, etc.) with different structures.",
+      "fields": [
+        { "id": "ptrcNumber", "label": "PTRC Number", "type": "text", "required": true },
+        { "id": "employerName", "label": "Employer Name", "type": "text", "required": true },
+        { "id": "address", "label": "Address", "type": "textarea", "required": true },
+        { "id": "period", "label": "Period (Month/Quarter)", "type": "text", "required": true },
+        { "id": "numEmployees", "label": "Number of Employees Liable", "type": "number", "required": true },
+        { "id": "taxAmount", "label": "Professional Tax Amount", "type": "amount", "required": true },
+        { "id": "interest", "label": "Interest (if any)", "type": "amount" },
+        { "id": "penalty", "label": "Penalty (if any)", "type": "amount" },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    },
+    {
+      "templateId": "mh-ptec",
+      "name": "Maharashtra PTEC (Professional Tax Enrolment Certificate) Challan",
+      "department": "Maharashtra State Tax",
+      "description": "Annual challan for professional tax payable by the proprietor/partner/director directly (distinct from PTRC which is on employees)",
+      "status": "active",
+      "fields": [
+        { "id": "ptecNumber", "label": "PTEC Number", "type": "text", "required": true },
+        { "id": "holderName", "label": "Holder Name", "type": "text", "required": true },
+        { "id": "category", "label": "Category (as per schedule)", "type": "text", "required": true },
+        { "id": "financialYear", "label": "Financial Year", "type": "text", "required": true },
+        { "id": "taxAmount", "label": "Annual Professional Tax (typically ₹2,500)", "type": "amount", "required": true },
+        { "id": "total", "label": "Total", "type": "amount_computed" },
+        { "id": "challanDate", "label": "Date", "type": "date", "required": true }
+      ]
+    }
+  ]
+}

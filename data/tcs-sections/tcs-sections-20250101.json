@@ -1,0 +1,66 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "Income Tax TCS sections under Section 206C — starter set covering the most common provisions for SMB use",
+  "publishedOn": "2025-01-01",
+  "source": "Section 206C of the Income Tax Act 1961; CBDT notifications and circulars; annual Finance Acts",
+  "notes": "Section 206C has multiple sub-sections covering different categories of TCS. This starter set covers 206C(1) (the original provision with specified goods), 206C(1F) (motor vehicles), 206C(1G) (overseas remittance and tour packages), and 206C(1H) (sale of goods — the most commonly encountered for SMBs). Rates and thresholds change with Finance Acts — verify current values against CBDT circulars before production use. Form 27EQ is the quarterly return; Form 27D is the certificate issued to buyers.",
+  "sections": [
+    {
+      "sectionId": "206C-1",
+      "section": "206C(1)",
+      "description": "TCS on sale of specified goods",
+      "applicability": "Sale of alcoholic liquor for human consumption, tendu leaves, timber, any other forest produce, scrap, minerals (including coal, lignite, iron ore)",
+      "threshold": "No specific threshold; applies on sale",
+      "rates": [
+        { "category": "alcoholic_liquor", "rate": 1.0 },
+        { "category": "tendu_leaves", "rate": 5.0 },
+        { "category": "timber_forest_lease", "rate": 2.5 },
+        { "category": "timber_other", "rate": 2.5 },
+        { "category": "other_forest_produce", "rate": 2.5 },
+        { "category": "scrap", "rate": 1.0 },
+        { "category": "minerals_coal_lignite_iron", "rate": 1.0 }
+      ],
+      "rateNote": "Rates are of sale consideration. Higher rate applies under Section 206CC if buyer has no PAN (5% or the applicable rate, whichever is higher).",
+      "validFrom": "1988-06-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "206C-1F",
+      "section": "206C(1F)",
+      "description": "TCS on sale of motor vehicle",
+      "applicability": "Sale of motor vehicle of value exceeding ₹10 lakh",
+      "threshold": "₹10,00,000 per vehicle",
+      "rate": 1.0,
+      "rateNote": "1% of sale consideration for motor vehicles exceeding ₹10 lakh",
+      "validFrom": "2016-06-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "206C-1G",
+      "section": "206C(1G)",
+      "description": "TCS on overseas remittance and foreign tour package",
+      "applicability": "Remittance under Liberalised Remittance Scheme (LRS) by Authorised Dealer bank, or overseas tour program package",
+      "threshold": "₹7,00,000 per year for LRS; no threshold for overseas tour packages (as amended)",
+      "rates": [
+        { "category": "lrs_remittance_general", "rate": 20.0, "note": "20% on amount exceeding ₹7 lakh (with exceptions for education, medical)" },
+        { "category": "lrs_education_loan", "rate": 0.5, "note": "0.5% for remittance for education funded by loan from financial institution, above ₹7 lakh" },
+        { "category": "lrs_education_medical_other", "rate": 5.0, "note": "5% for education (not loan-funded) and medical treatment, above ₹7 lakh" },
+        { "category": "overseas_tour_package", "rate": 20.0, "note": "20% on tour package from 1 October 2023 (previously 5%)" }
+      ],
+      "rateNote": "Rates and categories have been amended multiple times since introduction. Verify current rates against latest Finance Act.",
+      "validFrom": "2020-10-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "206C-1H",
+      "section": "206C(1H)",
+      "description": "TCS on sale of goods",
+      "applicability": "Seller whose turnover exceeds ₹10 crore in the preceding financial year, selling goods to a buyer on aggregate sale consideration exceeding ₹50 lakh in a financial year",
+      "threshold": "₹50,00,000 per buyer per financial year (applies only to sellers with turnover above ₹10 crore)",
+      "rate": 0.1,
+      "rateNote": "0.1% on amount exceeding ₹50 lakh per buyer; 1% if buyer has no PAN. Section 194Q takes precedence over 206C(1H) if both apply — in such case, the buyer deducts TDS under 194Q instead of seller collecting TCS under 206C(1H).",
+      "validFrom": "2020-10-01",
+      "validTo": null
+    }
+  ]
+}

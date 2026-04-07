@@ -1,0 +1,69 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "GST Compensation Cess — starter set covering commonly-encountered items. NOT exhaustive.",
+  "publishedOn": "2025-01-01",
+  "source": "GST (Compensation to States) Act 2017; CBIC Notification No. 1/2017-Compensation Cess (Rate) and subsequent amendments",
+  "notes": "Compensation cess was introduced to compensate states for revenue loss during the transition to GST. It applies in addition to the normal GST rate on specified luxury and sin goods. Cess rates are often extraordinarily high (motor vehicles, tobacco, aerated beverages, coal). The cess regime was originally legislated to sunset after 5 years but has been extended multiple times. Rates and items change with GST Council decisions — verify against current CBIC notifications before production use. Specific cess rates include compound rates (ad valorem + specific) which application logic must support.",
+  "entries": [
+    {
+      "cessId": "cess-tobacco-pan-masala",
+      "description": "Pan masala",
+      "hsnPattern": "2106 90 20",
+      "cessRate": 60.0,
+      "cessType": "ad_valorem",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "note": "Plus applicable GST at 28%"
+    },
+    {
+      "cessId": "cess-cigarettes",
+      "description": "Cigarettes containing tobacco",
+      "hsnPattern": "2402 20",
+      "cessRate": null,
+      "cessType": "compound",
+      "cessNote": "Compound cess: ad valorem percentage plus specific amount per thousand sticks, varies by length and filter/non-filter category. Refer to current notification.",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    },
+    {
+      "cessId": "cess-aerated-water",
+      "description": "Aerated waters, containing added sugar or other sweetening matter",
+      "hsnPattern": "2202",
+      "cessRate": 12.0,
+      "cessType": "ad_valorem",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "note": "Plus 28% GST"
+    },
+    {
+      "cessId": "cess-motor-vehicles-small",
+      "description": "Motor vehicles — small cars with engine capacity under 1200cc petrol / 1500cc diesel",
+      "hsnPattern": "8703",
+      "cessRate": 1.0,
+      "cessType": "ad_valorem",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "note": "Compound cess applies to larger vehicles at higher rates"
+    },
+    {
+      "cessId": "cess-motor-vehicles-large",
+      "description": "Motor vehicles — larger cars and SUVs",
+      "hsnPattern": "8703",
+      "cessRate": 22.0,
+      "cessType": "ad_valorem",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "note": "Various rates 1% to 22% depending on engine capacity, length, fuel type, and category (SUV, luxury). Refer to current notification for exact category mapping."
+    },
+    {
+      "cessId": "cess-coal",
+      "description": "Coal, briquettes, ovoids and similar solid fuels manufactured from coal",
+      "hsnPattern": "2701",
+      "cessRate": null,
+      "cessType": "specific",
+      "cessNote": "₹400 per tonne (specific cess)",
+      "validFrom": "2017-07-01",
+      "validTo": null
+    }
+  ]
+}

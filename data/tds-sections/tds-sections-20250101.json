@@ -1,0 +1,109 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "Income Tax TDS sections with thresholds and rates — starter set covering the most common sections for SMB use. This is NOT exhaustive.",
+  "publishedOn": "2025-01-01",
+  "source": "Income Tax Act 1961 Chapter XVII-B; CBDT notifications and circulars; annual Finance Acts",
+  "notes": "This is a STARTER DATASET covering the TDS sections most commonly encountered by small and medium businesses. It is not exhaustive. Sections 193, 194, 194B, 194BB, 194D, 194DA, 194E, 194EE, 194F, 194G, 194K, 194L, 194LA, 194LB, 194LBA, 194LBB, 194LBC, 194LC, 194LD, 194M, 194N, 194O, 194P, 194R, 194S, 196, 196A-D are NOT yet included and should be added as needed. Rates and thresholds change with each annual Finance Act — verify current values against the latest CBDT circulars before production use. Where higher rates apply when the deductee has no PAN (Section 206AA) or is non-filer (Section 206AB), the higher rate is noted but should be handled by application logic, not duplicated as separate section entries.",
+  "sections": [
+    {
+      "sectionId": "192",
+      "section": "192",
+      "description": "TDS on salary",
+      "applicability": "Employer paying salary to employee, if estimated annual income exceeds basic exemption limit",
+      "threshold": "Basic exemption limit (varies by slab and regime)",
+      "rate": null,
+      "rateNote": "At average rate based on applicable slab; computed per Income Tax slabs for the financial year. No fixed rate.",
+      "validFrom": "1961-04-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "194A",
+      "section": "194A",
+      "description": "TDS on interest other than interest on securities",
+      "applicability": "Interest paid by banks, post offices, cooperative societies, and others (threshold-based)",
+      "threshold": "₹40,000 per year for banks (₹50,000 for senior citizens); ₹5,000 for others",
+      "rate": 10.0,
+      "rateNote": "10% if PAN furnished; 20% under Section 206AA without PAN",
+      "validFrom": "1988-04-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "194C",
+      "section": "194C",
+      "description": "TDS on payments to contractors and sub-contractors",
+      "applicability": "Payment for carrying out any work (including supply of labour) under a contract",
+      "threshold": "₹30,000 per single payment or ₹1,00,000 aggregate per year",
+      "rate": 1.0,
+      "rateNote": "1% if payee is individual or HUF; 2% for other payees; 20% under Section 206AA without PAN",
+      "alternateRates": [
+        { "condition": "payeeType == 'individual' || payeeType == 'huf'", "rate": 1.0 },
+        { "condition": "payeeType == 'company' || payeeType == 'firm' || payeeType == 'other'", "rate": 2.0 }
+      ],
+      "validFrom": "1972-04-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "194H",
+      "section": "194H",
+      "description": "TDS on commission or brokerage",
+      "applicability": "Commission or brokerage paid (excluding insurance commission covered under 194D)",
+      "threshold": "₹15,000 per year",
+      "rate": 5.0,
+      "rateNote": "5% if PAN furnished; 20% under Section 206AA without PAN. Rate was 10% prior to FY 2016-17.",
+      "validFrom": "1991-10-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "194I",
+      "section": "194I",
+      "description": "TDS on rent",
+      "applicability": "Rent paid for land, building, furniture, fittings, plant, and machinery",
+      "threshold": "₹2,40,000 per year",
+      "rate": null,
+      "rateNote": "2% for plant, machinery, or equipment; 10% for land, building, furniture, or fittings; 20% under Section 206AA without PAN",
+      "alternateRates": [
+        { "condition": "rentType == 'plant_machinery_equipment'", "rate": 2.0 },
+        { "condition": "rentType == 'land_building_furniture'", "rate": 10.0 }
+      ],
+      "validFrom": "1994-06-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "194J",
+      "section": "194J",
+      "description": "TDS on fees for professional or technical services",
+      "applicability": "Fees for professional services, technical services, royalty, non-compete fees, and directors' remuneration (other than salary)",
+      "threshold": "₹30,000 per year per category",
+      "rate": 10.0,
+      "rateNote": "10% for professional fees, royalty, non-compete, directors' remuneration; 2% for technical services (reduced from 10% with effect from 1 April 2020); 20% under Section 206AA without PAN",
+      "alternateRates": [
+        { "condition": "serviceType == 'technical'", "rate": 2.0 },
+        { "condition": "serviceType == 'professional' || serviceType == 'royalty' || serviceType == 'non_compete' || serviceType == 'director_remuneration'", "rate": 10.0 }
+      ],
+      "validFrom": "1995-07-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "194Q",
+      "section": "194Q",
+      "description": "TDS on purchase of goods",
+      "applicability": "Buyer whose turnover exceeds ₹10 crore in the previous financial year, purchasing goods from a seller, on aggregate purchases exceeding ₹50 lakh in the financial year",
+      "threshold": "₹50,00,000 per seller per financial year (applies only to buyers with turnover above ₹10 crore)",
+      "rate": 0.1,
+      "rateNote": "0.1% on amount exceeding ₹50 lakh; 5% if PAN not furnished (Section 206AA). Section 194Q takes precedence over Section 206C(1H) if both apply.",
+      "validFrom": "2021-07-01",
+      "validTo": null
+    },
+    {
+      "sectionId": "195",
+      "section": "195",
+      "description": "TDS on payments to non-residents",
+      "applicability": "Any sum chargeable to tax paid to a non-resident (other than salary)",
+      "threshold": "No threshold; applies to all payments",
+      "rate": null,
+      "rateNote": "Rate varies by nature of payment and applicable DTAA (Double Taxation Avoidance Agreement). Refer to specific provisions and DTAA rates.",
+      "validFrom": "1961-04-01",
+      "validTo": null
+    }
+  ]
+}

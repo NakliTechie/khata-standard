@@ -1,0 +1,61 @@
+Creative Commons Attribution 4.0 International License (CC-BY 4.0)
+
+Copyright (c) 2025 Chirag Patnaik and khata-standard contributors
+
+This license applies to the reference data in the `data/` directory of this
+repository. The full legal text is available at:
+
+  https://creativecommons.org/licenses/by/4.0/legalcode
+
+A human-readable summary is at:
+
+  https://creativecommons.org/licenses/by/4.0/
+
+You are free to:
+
+  Share — copy and redistribute the material in any medium or format
+  Adapt — remix, transform, and build upon the material
+  for any purpose, even commercially.
+
+Under the following terms:
+
+  Attribution — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your
+  use.
+
+  No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the license
+  permits.
+
+Notices:
+
+  You do not have to comply with the license for elements of the material in
+  the public domain or where your use is permitted by an applicable exception
+  or limitation.
+
+  No warranties are given. The license may not give you all of the permissions
+  necessary for your intended use. For example, other rights such as
+  publicity, privacy, or moral rights may limit how you use the material.
+
+---
+
+ATTRIBUTION NOTE FOR REFERENCE DATA USERS:
+
+When using data from this repository, please attribute as:
+
+  "Reference data from khata-standard (https://github.com/NakliTechie/khata-standard),
+  licensed under CC-BY 4.0."
+
+The reference data is compiled from publicly-available official sources
+(CBIC notifications, GST Council minutes, Income Tax Act, Finance Acts,
+state tax department publications). The compilation, structure, versioning,
+and provenance documentation are the contribution of khata-standard
+contributors. The underlying facts (tax rates, section numbers, etc.) are
+not themselves copyrightable but the specific JSON representation and
+organization are.
+
+---
+
+This license applies only to files under data/. The format specification in
+spec/ and any code in this repository are licensed under MIT; see LICENSE.

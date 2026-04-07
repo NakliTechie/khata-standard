@@ -1,0 +1,188 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "Standard Indian chart of accounts seed for new Bahi companies — the starter ledger structure every new company begins with",
+  "publishedOn": "2025-01-01",
+  "source": "Compilation of standard Indian accounting practice; Schedule III of the Companies Act 2013 for classification guidance; common chart of accounts used in Tally and similar Indian accounting software",
+  "notes": "This is the default CoA seeded into every new .khata file at company creation. Users can add, rename, and modify accounts (with audit log entries per §10.19). The structure follows standard Indian accounting practice: Primary Groups → Groups → Ledger Accounts. Sub-accounts for specific GST rates (e.g., 'GST Output 18%') are created dynamically on first use, not pre-seeded, per the dynamic rate handling in §3.7. Accounts marked 'essential: true' should not be deletable — the application reserves these for double-entry posting logic. Account IDs are stable identifiers that should never change even if the display name changes.",
+  "primaryGroups": [
+    {
+      "id": "assets",
+      "name": "Assets",
+      "nature": "asset",
+      "groups": [
+        {
+          "id": "current-assets",
+          "name": "Current Assets",
+          "accounts": [
+            { "id": "bank-accounts", "name": "Bank Accounts", "essential": true },
+            { "id": "cash-in-hand", "name": "Cash in Hand", "essential": true },
+            { "id": "sundry-debtors", "name": "Sundry Debtors", "essential": true, "note": "Parent for customer sub-ledgers" },
+            { "id": "customer-advances-paid", "name": "Customer Advances Paid", "essential": false, "note": "Advances we have paid to customers (rare)" },
+            { "id": "short-term-loans-advances", "name": "Short-term Loans and Advances", "essential": false },
+            { "id": "advance-to-vendors", "name": "Advance to Vendors", "essential": false },
+            { "id": "prepaid-expenses", "name": "Prepaid Expenses", "essential": false },
+            { "id": "tds-receivable", "name": "TDS Receivable", "essential": false, "note": "TDS deducted by customers on our income" }
+          ]
+        },
+        {
+          "id": "duties-taxes-input",
+          "name": "Duties and Taxes - Input",
+          "accounts": [
+            { "id": "gst-input", "name": "GST Input", "essential": true, "note": "Parent account; sub-accounts per rate (e.g. 'GST Input CGST 9%') auto-created on first use" },
+            { "id": "gst-rcm-input", "name": "GST RCM Input", "essential": true, "note": "Input credit on reverse charge supplies" },
+            { "id": "cess-input", "name": "Cess Input", "essential": false, "note": "Compensation cess input where applicable" }
+          ]
+        },
+        {
+          "id": "fixed-assets",
+          "name": "Fixed Assets",
+          "accounts": [
+            { "id": "plant-machinery", "name": "Plant and Machinery", "essential": false },
+            { "id": "furniture-fixtures", "name": "Furniture and Fixtures", "essential": false },
+            { "id": "office-equipment", "name": "Office Equipment", "essential": false },
+            { "id": "computers", "name": "Computers and Peripherals", "essential": false },
+            { "id": "vehicles", "name": "Vehicles", "essential": false },
+            { "id": "accumulated-depreciation", "name": "Accumulated Depreciation", "essential": false, "note": "Contra-asset" }
+          ]
+        },
+        {
+          "id": "investments",
+          "name": "Investments",
+          "accounts": []
+        }
+      ]
+    },
+    {
+      "id": "liabilities",
+      "name": "Liabilities",
+      "nature": "liability",
+      "groups": [
+        {
+          "id": "current-liabilities",
+          "name": "Current Liabilities",
+          "accounts": [
+            { "id": "sundry-creditors", "name": "Sundry Creditors", "essential": true, "note": "Parent for vendor sub-ledgers" },
+            { "id": "customer-advances-received", "name": "Customer Advances Received", "essential": true, "note": "GST on advance posts here per §10.11" },
+            { "id": "outstanding-expenses", "name": "Outstanding Expenses", "essential": false },
+            { "id": "statutory-dues", "name": "Statutory Dues", "essential": false }
+          ]
+        },
+        {
+          "id": "duties-taxes-output",
+          "name": "Duties and Taxes - Output and Payable",
+          "accounts": [
+            { "id": "gst-output", "name": "GST Output", "essential": true, "note": "Parent account; sub-accounts per rate auto-created on first use" },
+            { "id": "gst-rcm-output", "name": "GST RCM Output", "essential": true, "note": "Self-liability on reverse charge supplies" },
+            { "id": "cess-output", "name": "Cess Output", "essential": false },
+            { "id": "composition-tax-payable", "name": "Composition Tax Payable", "essential": false, "note": "Used only when company is on composition scheme per §10.14" },
+            { "id": "tds-payable", "name": "TDS Payable", "essential": true, "note": "TDS deducted by us on payments we make" },
+            { "id": "tcs-payable", "name": "TCS Payable", "essential": false, "note": "TCS collected from customers per §10.13" },
+            { "id": "professional-tax-payable", "name": "Professional Tax Payable", "essential": false },
+            { "id": "pf-payable", "name": "Provident Fund Payable", "essential": false },
+            { "id": "esi-payable", "name": "ESI Payable", "essential": false }
+          ]
+        },
+        {
+          "id": "long-term-liabilities",
+          "name": "Long-term Liabilities",
+          "accounts": [
+            { "id": "secured-loans", "name": "Secured Loans", "essential": false },
+            { "id": "unsecured-loans", "name": "Unsecured Loans", "essential": false }
+          ]
+        },
+        {
+          "id": "capital-account",
+          "name": "Capital Account",
+          "accounts": [
+            { "id": "capital", "name": "Capital", "essential": true },
+            { "id": "drawings", "name": "Drawings", "essential": false, "note": "For proprietorship/partnership only" },
+            { "id": "reserves-surplus", "name": "Reserves and Surplus", "essential": false, "note": "For companies" },
+            { "id": "retained-earnings", "name": "Retained Earnings", "essential": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "income",
+      "name": "Income",
+      "nature": "income",
+      "groups": [
+        {
+          "id": "direct-income",
+          "name": "Direct Income",
+          "accounts": [
+            { "id": "sales", "name": "Sales", "essential": true, "note": "Posted by all sales invoices" },
+            { "id": "sales-returns", "name": "Sales Returns", "essential": true, "note": "Contra-income; posted by credit notes" },
+            { "id": "services-rendered", "name": "Services Rendered", "essential": false, "note": "Alternative to Sales for service businesses" }
+          ]
+        },
+        {
+          "id": "indirect-income",
+          "name": "Indirect Income",
+          "accounts": [
+            { "id": "interest-received", "name": "Interest Received", "essential": false },
+            { "id": "discount-received", "name": "Discount Received", "essential": false },
+            { "id": "miscellaneous-income", "name": "Miscellaneous Income", "essential": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expenses",
+      "name": "Expenses",
+      "nature": "expense",
+      "groups": [
+        {
+          "id": "direct-expenses",
+          "name": "Direct Expenses (Cost of Sales)",
+          "accounts": [
+            { "id": "purchases", "name": "Purchases", "essential": true, "note": "Posted by all purchase bills" },
+            { "id": "purchase-returns", "name": "Purchase Returns", "essential": true, "note": "Contra-expense; posted by debit notes" },
+            { "id": "freight-inward", "name": "Freight Inward", "essential": false },
+            { "id": "wages", "name": "Wages (Direct)", "essential": false },
+            { "id": "power-fuel", "name": "Power and Fuel", "essential": false }
+          ]
+        },
+        {
+          "id": "indirect-expenses",
+          "name": "Indirect Expenses",
+          "accounts": [
+            { "id": "salaries", "name": "Salaries", "essential": false },
+            { "id": "rent-expense", "name": "Rent", "essential": false },
+            { "id": "electricity-water", "name": "Electricity and Water", "essential": false },
+            { "id": "internet-telephone", "name": "Internet and Telephone", "essential": false },
+            { "id": "office-expenses", "name": "Office Expenses", "essential": false },
+            { "id": "printing-stationery", "name": "Printing and Stationery", "essential": false },
+            { "id": "professional-fees", "name": "Professional Fees", "essential": false },
+            { "id": "audit-fees", "name": "Audit Fees", "essential": false },
+            { "id": "travelling", "name": "Travelling and Conveyance", "essential": false },
+            { "id": "bank-charges", "name": "Bank Charges", "essential": false },
+            { "id": "interest-expense", "name": "Interest Expense", "essential": false },
+            { "id": "repairs-maintenance", "name": "Repairs and Maintenance", "essential": false },
+            { "id": "insurance", "name": "Insurance", "essential": false },
+            { "id": "depreciation", "name": "Depreciation", "essential": false },
+            { "id": "miscellaneous-expenses", "name": "Miscellaneous Expenses", "essential": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "name": "System Accounts",
+      "nature": "system",
+      "note": "Reserved accounts used by the application for specific posting logic; not user-editable",
+      "groups": [
+        {
+          "id": "system-accounts",
+          "name": "System",
+          "accounts": [
+            { "id": "pl-summary", "name": "P&L Summary", "essential": true, "note": "Used in year-end closing entries per §10.4" },
+            { "id": "round-off", "name": "Round-Off", "essential": true, "note": "Auto-populated by invoice round-off lines" },
+            { "id": "opening-balance-equity", "name": "Opening Balance Equity", "essential": true, "note": "Used when importing existing balances" },
+            { "id": "suspense", "name": "Suspense", "essential": true, "note": "For unclassified entries pending review" }
+          ]
+        }
+      ]
+    }
+  ]
+}

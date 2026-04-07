@@ -1,0 +1,39 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "GST composition scheme rates under Section 10 of the CGST Act, for small taxpayers below turnover thresholds",
+  "publishedOn": "2025-01-01",
+  "source": "Section 10 of CGST Act 2017; CBIC Notification No. 8/2017-Central Tax (and subsequent amendments); Section 10(2A) for composition scheme for services introduced by Finance Act 2019",
+  "notes": "Composition dealers cannot collect tax from customers and cannot claim input tax credit. They must display 'Composition Taxable Person — not eligible to collect tax' on every invoice. They file CMP-08 quarterly and GSTR-4 annually. Thresholds: ₹1.5 crore aggregate turnover for goods (₹75 lakh for special category states), ₹50 lakh for services under 10(2A). Rates are split equally between CGST and SGST.",
+  "rates": [
+    {
+      "rateId": "comp-1-trader",
+      "rate": 1.0,
+      "cgst": 0.5,
+      "sgst": 0.5,
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Composition rate for traders (including manufacturers from 1 April 2018 after rate unification)",
+      "applicability": "Traders and manufacturers under Section 10(1). Rate applies to aggregate turnover of taxable supplies of goods."
+    },
+    {
+      "rateId": "comp-5-restaurant",
+      "rate": 5.0,
+      "cgst": 2.5,
+      "sgst": 2.5,
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Composition rate for restaurants and catering",
+      "applicability": "Restaurants not serving alcoholic liquor, eligible under Section 10(1)"
+    },
+    {
+      "rateId": "comp-6-service",
+      "rate": 6.0,
+      "cgst": 3.0,
+      "sgst": 3.0,
+      "validFrom": "2019-04-01",
+      "validTo": null,
+      "description": "Composition rate for services and mixed suppliers under Section 10(2A)",
+      "applicability": "Service providers and mixed suppliers (goods + services) with aggregate turnover up to ₹50 lakh, eligible under Section 10(2A) introduced by Finance Act 2019"
+    }
+  ]
+}

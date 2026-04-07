@@ -1,0 +1,93 @@
+{
+  "khataStandardVersion": "0.1.0-seed",
+  "formatVersion": "1.0",
+  "generatedAt": "2025-01-01T00:00:00Z",
+  "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
+  "repo": "https://github.com/NakliTechie/khata-standard",
+  "cdn": "https://naklitechie.com/bahi/reference/",
+  "datasets": {
+    "states": {
+      "file": "states-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "stable"
+    },
+    "gst-rates": {
+      "file": "gst-rates-20170701.json",
+      "version": "2017-07-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "stable",
+      "note": "Rate bands only; HSN-to-rate assignments are in the hsn dataset"
+    },
+    "hsn-common": {
+      "file": "hsn-common-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "placeholder",
+      "note": "Starter set only. Production release requires a curated top-2000 HSN set from CBIC sources."
+    },
+    "hsn-full": {
+      "file": null,
+      "version": null,
+      "sha256": null,
+      "status": "not_yet_published",
+      "note": "Full ~15K HSN set to be published after sourcing from CBIC"
+    },
+    "sac": {
+      "file": "sac-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "placeholder",
+      "note": "Starter set of major service categories; needs expansion"
+    },
+    "cess": {
+      "file": "cess-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "starter"
+    },
+    "tds-sections": {
+      "file": "tds-sections-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "starter",
+      "note": "Most common sections; not exhaustive"
+    },
+    "tcs-sections": {
+      "file": "tcs-sections-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "starter"
+    },
+    "rcm-categories": {
+      "file": "rcm-categories-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "starter"
+    },
+    "composition-rates": {
+      "file": "composition-rates-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "stable"
+    },
+    "challan-templates": {
+      "file": "challan-templates-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "starter",
+      "note": "Most common challans; more state-specific forms to follow"
+    },
+    "coa-seed": {
+      "file": "coa-seed-20250101.json",
+      "version": "2025-01-01",
+      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "status": "stable"
+    }
+  },
+  "notes": [
+    "SHA-256 hashes are placeholders ('TO_BE_COMPUTED_ON_PUBLISH') and will be populated by the GitHub Action that publishes to the CDN.",
+    "Status values: 'stable' means the dataset is accurate and ready for use; 'starter' means a reasonable initial set that should be reviewed and expanded; 'placeholder' means a structural skeleton that must be replaced before production use.",
+    "Bahi should treat 'placeholder' datasets with extra caution — surface to the user that the data is incomplete and they should exercise judgment on values not covered by the bundled set."
+  ]
+}

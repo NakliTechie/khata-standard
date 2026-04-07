@@ -1,0 +1,126 @@
+{
+  "datasetVersion": "2025-01-01",
+  "description": "HSN (Harmonized System of Nomenclature) codes — STARTER PLACEHOLDER covering a small illustrative set of common codes. This file is NOT a usable top-2000 HSN reference and MUST be replaced before production use.",
+  "publishedOn": "2025-01-01",
+  "source": "PLACEHOLDER — needs authoritative sourcing from CBIC GST rate schedule (https://cbic-gst.gov.in/gst-goods-services-rates.html) and the GST Council's approved HSN rate schedule",
+  "status": "PLACEHOLDER — REPLACE BEFORE PRODUCTION USE",
+  "notes": "This file exists so the khata-standard repo can be bootstrapped with a non-empty hsn/ directory and so Bahi can be developed against the expected schema. The entries here are a tiny sample of commonly-encountered HSN codes across major categories (textiles, electronics, food, machinery, services via SAC). The goal for a real release is a curated top-2000 HSN set representing ~95% of SMB transaction volume. Sourcing this set requires either scraping the CBIC rate schedule, purchasing a compliance database, or partnering with an existing tool that has already done the work. Until then, Bahi should flag unknown HSN codes as 'not in bundled set' and prompt the user to enter rate manually. Rate assignments shown here are as of current knowledge but every HSN rate should be re-verified against the latest CBIC rate schedule before use.",
+  "entries": [
+    {
+      "hsn": "0401",
+      "description": "Milk and cream, not concentrated nor containing added sugar or other sweetening matter",
+      "rateId": "gst-0-exempt",
+      "rateAsOf": "2025-01-01",
+      "category": "food",
+      "note": "Fresh milk exempt; UHT and flavoured milk may be taxed"
+    },
+    {
+      "hsn": "1006",
+      "description": "Rice",
+      "rateId": "gst-0-exempt",
+      "rateAsOf": "2025-01-01",
+      "category": "food",
+      "note": "Unbranded rice exempt; pre-packaged and labelled rice subject to 5% effective July 2022"
+    },
+    {
+      "hsn": "1905",
+      "description": "Bread, pastry, cakes, biscuits and other bakers' wares",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "food",
+      "note": "Branded bread may be exempt; biscuits 18%"
+    },
+    {
+      "hsn": "3004",
+      "description": "Medicaments consisting of mixed or unmixed products for therapeutic or prophylactic uses, put up in measured doses or in forms or packings for retail sale",
+      "rateId": "gst-12-standard-lower",
+      "rateAsOf": "2025-01-01",
+      "category": "pharma",
+      "note": "Many medicines at 12%; life-saving drugs at 5% or exempt"
+    },
+    {
+      "hsn": "4820",
+      "description": "Registers, account books, note books, order books, receipt books, letter pads, memorandum pads, diaries and similar articles",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "stationery"
+    },
+    {
+      "hsn": "6203",
+      "description": "Men's or boys' suits, ensembles, jackets, blazers, trousers, bib and brace overalls, breeches and shorts (other than swimwear)",
+      "rateId": "gst-5-merit",
+      "rateAsOf": "2025-01-01",
+      "category": "apparel",
+      "note": "Apparel below ₹1000 at 5%; above ₹1000 at 12%"
+    },
+    {
+      "hsn": "6204",
+      "description": "Women's or girls' suits, ensembles, jackets, blazers, dresses, skirts, divided skirts, trousers, bib and brace overalls, breeches and shorts (other than swimwear)",
+      "rateId": "gst-5-merit",
+      "rateAsOf": "2025-01-01",
+      "category": "apparel"
+    },
+    {
+      "hsn": "8471",
+      "description": "Automatic data processing machines and units thereof; magnetic or optical readers, machines for transcribing data onto data media in coded form and machines for processing such data",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "electronics",
+      "note": "Includes desktop computers, laptops, servers, and accessories"
+    },
+    {
+      "hsn": "8517",
+      "description": "Telephone sets, including smartphones and other telephones for cellular networks or for other wireless networks",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "electronics",
+      "note": "Mobile phones moved from 12% to 18% effective April 2020"
+    },
+    {
+      "hsn": "8528",
+      "description": "Monitors and projectors, not incorporating television reception apparatus; reception apparatus for television",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "electronics"
+    }
+  ],
+  "sacPlaceholders": [
+    {
+      "sac": "998311",
+      "description": "Management consulting and management services including financial, strategic, human resources, marketing, operations and supply chain management",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "professional_services",
+      "note": "Most professional consulting services at 18%"
+    },
+    {
+      "sac": "998314",
+      "description": "Information technology (IT) consulting and support services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "it_services"
+    },
+    {
+      "sac": "998399",
+      "description": "Other professional, technical and business services n.e.c.",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "professional_services"
+    },
+    {
+      "sac": "998596",
+      "description": "Events, exhibitions, conferences and meetings assistance services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "events"
+    },
+    {
+      "sac": "999329",
+      "description": "Other educational support services",
+      "rateId": "gst-18-standard",
+      "rateAsOf": "2025-01-01",
+      "category": "education",
+      "note": "Many educational services are exempt; verify per exact nature"
+    }
+  ]
+}

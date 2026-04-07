@@ -1,0 +1,72 @@
+{
+  "datasetVersion": "2017-07-01",
+  "description": "GST rate bands as introduced on 1 July 2017 — the launch date of the Goods and Services Tax in India",
+  "publishedOn": "2017-07-01",
+  "source": "CGST Act 2017; CBIC Notification No. 1/2017-Central Tax (Rate) and companion state notifications; GST Council recommendations from the 14th GST Council Meeting",
+  "notes": "These are the rate bands at launch. Individual HSN-to-rate assignments change frequently at GST Council meetings; see hsn/ directory for current assignments. Rate values are percentages. CGST + SGST split is always 50/50 of the total rate (e.g., 18% = 9% CGST + 9% SGST) for intra-state supply. For inter-state supply, the full rate is collected as IGST. The 0.25% rate applies specifically to rough diamonds and certain precious stones. The 3% rate applies to gold, silver, diamonds, and certain precious metals.",
+  "rates": [
+    {
+      "rateId": "gst-0-exempt",
+      "rate": 0.0,
+      "type": "exempt",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Exempt / nil-rated",
+      "applicability": "Essential items: fresh food, basic services, education, healthcare, and other exempted supplies"
+    },
+    {
+      "rateId": "gst-0-25-special",
+      "rate": 0.25,
+      "type": "special",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Special rate for rough precious stones",
+      "applicability": "Rough diamonds and specified precious stones"
+    },
+    {
+      "rateId": "gst-3-precious",
+      "rate": 3.0,
+      "type": "special",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Gold, silver, and specified precious metals",
+      "applicability": "Gold, silver, platinum, imitation jewellery (effective rate on precious metals supply)"
+    },
+    {
+      "rateId": "gst-5-merit",
+      "rate": 5.0,
+      "type": "merit",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Merit rate",
+      "applicability": "Household necessities, packaged food, footwear under ₹1000, apparel under ₹1000, domestic LPG, and other items in the 5% schedule"
+    },
+    {
+      "rateId": "gst-12-standard-lower",
+      "rate": 12.0,
+      "type": "standard",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Lower standard rate",
+      "applicability": "Processed food, computers, mobile phones (initial), business class air travel, and other items in the 12% schedule. Subject to rationalization discussions."
+    },
+    {
+      "rateId": "gst-18-standard",
+      "rate": 18.0,
+      "type": "standard",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Standard rate",
+      "applicability": "Most services, industrial intermediates, consumer electronics, restaurants (non-AC and AC differ, see applicability notes), and the default rate for items not classified elsewhere"
+    },
+    {
+      "rateId": "gst-28-demerit",
+      "rate": 28.0,
+      "type": "demerit",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Demerit rate",
+      "applicability": "Luxury and sin goods: tobacco products, aerated beverages, luxury automobiles, pan masala, and other items in the 28% schedule. Compensation cess applies in addition to the 28% for many items — see cess/ dataset."
+    }
+  ]
+}
