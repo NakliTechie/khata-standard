@@ -1,0 +1,144 @@
+# Contributing to khata-standard
+
+Thanks for considering a contribution. This repo is small but it carries real responsibility — apps reading this data use it to calculate actual taxes for real businesses. Contributions are welcome, but they need to be careful.
+
+---
+
+## What can you contribute?
+
+### 1. Reference data updates
+Updates to JSON files in `data/` reflecting regulatory changes — new GST rates, updated HSN assignments, new TDS sections after a Union Budget, a new state or UT, revised challan forms, etc. This is the most common type of contribution.
+
+### 2. Reference data corrections
+If you spot an error in existing data — a wrong rate, a typo in an HSN description, an incorrect effective date — please open an issue or PR. Corrections are always welcome and usually land quickly.
+
+### 3. Provenance additions
+If existing reference data is missing its `provenance/` directory (common for older entries backfilled during repo setup), adding the supporting documentation is a genuinely useful contribution even if the data itself doesn't change.
+
+### 4. Spec clarifications
+If the format specification in `spec/` is ambiguous or underspecified for a scenario you hit while implementing a `.khata` reader or writer, open an issue or PR with the clarification. Small clarifications can land as direct PRs; anything that changes semantics goes through the RFC process described in GOVERNANCE.md.
+
+### 5. New reference datasets
+If there's a type of reference data that would benefit multiple `.khata` implementations (e.g., pin code → state mapping, currency codes for future multi-currency support), propose it as an issue first before sending a PR.
+
+### 6. Bug reports
+If you find an error, a missing file, a broken link, or any other problem — open an issue. No PR needed for reports.
+
+---
+
+## What is NOT in scope for this repo?
+
+- **Application features.** This repo is for the format and data. Bahi's features, UI, and implementation live in [the Bahi repo](https://github.com/NakliTechie/bahi). Feature requests for Bahi should go there.
+- **Tax advice.** The data here describes what the law says. It does not advise what any specific business should do. If you're trying to figure out whether a rate applies to your situation, ask a CA, not this repo.
+- **Opinions about tax policy.** Whether a rate should be higher or lower is for the GST Council to decide. This repo records what is, not what should be.
+- **Regional variants that aren't legally distinct.** India-specific accounting conventions are in scope. International adaptations are not — a hypothetical `.khata` for another country would be a separate repo and a separate standard.
+
+---
+
+## How to contribute reference data
+
+This is the path most contributions will take. Please read it carefully.
+
+### Step 1 — Have a real source
+
+Every data change must be backed by an authoritative source. Acceptable sources include:
+
+- **GST notifications** from CBIC (the Central Board of Indirect Taxes and Customs)
+- **GST Council meeting minutes** and press releases
+- **CBDT notifications** for TDS/TCS
+- **Finance Act** and budget documents
+- **Official gazette** publications
+- **State tax department notifications** for state-specific items
+
+NOT acceptable:
+- News articles summarizing changes (but these are fine as pointers to the actual notification)
+- Blog posts or opinion pieces
+- Unofficial compilations
+- "Someone told me" or "everyone knows"
+
+If you don't have a primary source, please don't open a data PR. Instead, open an issue flagging the change so maintainers can chase the source.
+
+### Step 2 — Prepare the data file
+
+Reference data files follow the pattern `<dataset>-YYYYMMDD.json` where `YYYYMMDD` is the **effective date** of the change, not the date you're submitting. For GST rate changes effective 1 October 2025, the file is `gst-rates-20251001.json`.
+
+If you're adding a new file (a new version of existing data), leave the old files in place. Historical versions are preserved forever — a `.khata` reader processing a 2019 invoice needs the 2019 rate file. Never delete or modify files that are in `data/`.
+
+Schema for each dataset type is documented in the `spec/` directory. Validate your JSON against the schema before opening the PR.
+
+### Step 3 — Write provenance
+
+Create a new directory: `provenance/YYYY-MM-DD-brief-description/`
+
+Inside it, include:
+
+- **`source.md`** — a markdown file with:
+  - Links to the official source(s)
+  - The effective date of the change
+  - A brief description of what changed
+  - Any relevant context (e.g., "this supersedes notification X/2024")
+- **`notification.pdf`** (or `.png`, `.html`) — an archived copy of the original document. This matters because government websites occasionally reorganize and links rot. Having a local copy means the evidence survives.
+- **`diff-summary.md`** — a human-readable summary of what changed in the data, formatted for non-technical readers. Example:
+
+  > ### GST rate changes effective 1 October 2025
+  >
+  > - HSN 9503 (toys) reduced from 18% to 12%
+  > - HSN 2402 (cigarettes) cess increased from 64% to 68%
+  > - New rate band "GST 15%" introduced for HSNs 8517 through 8528 (telecom equipment)
+  >
+  > Source: CBIC Notification No. 14/2025-Central Tax (Rate), dated 25 September 2025.
+
+### Step 4 — Open the PR
+
+- Branch name: `data/<dataset>-<effective-date>` (e.g., `data/gst-rates-20251001`)
+- PR title: `[data] <dataset>: <brief description> effective YYYY-MM-DD`
+- PR body: paste the `diff-summary.md` contents and link to the provenance directory
+- Tag the PR with the `data-update` label
+
+Maintainers will review within a reasonable time. For time-sensitive updates (rate changes with an imminent effective date), ping in the issue tracker.
+
+### Step 5 — Wait for review and merge
+
+Maintainers will verify:
+- The source is authoritative
+- The provenance is complete and accurate
+- The JSON validates against the schema
+- The effective date is correct
+- The change matches what the source actually says
+
+If anything is unclear, maintainers will ask in the PR. Please respond — unanswered questions will cause the PR to stall.
+
+Once merged, a GitHub Action automatically publishes the updated data to the CDN, and downstream apps (Bahi and others) will see it on their next refresh check.
+
+---
+
+## How to contribute spec changes
+
+Spec changes are held to a higher bar than data changes because they affect every implementation.
+
+### Small clarifications
+If you're clarifying wording, fixing a typo, improving an example, or otherwise not changing semantics, open a PR directly. Small clarifications land quickly.
+
+### Semantic changes, new fields, format versioning
+Anything that changes what a valid `.khata` file looks like, adds new required fields, changes the audit log mechanism, or affects format versioning goes through a lightweight RFC process described in GOVERNANCE.md. Don't just open a PR — open an issue tagged `rfc` first, describe the change, explain the motivation, and wait for feedback.
+
+### Breaking changes
+Format-breaking changes that would invalidate existing `.khata` files are extremely rare and should not be attempted without strong justification. The whole point of an open format is stability. If you think a breaking change is necessary, open an issue tagged `rfc breaking-change` and prepare for a longer discussion.
+
+---
+
+## Code of conduct
+
+Be kind. Assume good faith. Don't gatekeep. If a contributor is new to open source, explain the process rather than dismissing their work. If a contributor is a domain expert who's never worked in git before, help them through the mechanics.
+
+Contributors are welcomed regardless of background, nationality, profession, experience level, or whether they're human or AI-assisted. What matters is that the contribution is correct and well-sourced.
+
+Disagreements about what's correct are normal and expected. Personal attacks are not. The maintainer team will moderate accordingly.
+
+---
+
+## Questions?
+
+Open an issue tagged `question`. If you're unsure whether something is in scope, ask before investing effort in a PR.
+
+Thanks again for contributing. This kind of infrastructure only works when people show up and do the work.
