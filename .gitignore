@@ -36,3 +36,6 @@ build/
 
 # GitHub Actions local testing
 .act/
+
+# Scraper local cache (raw HTML snapshots used during development)
+tools/cache/
