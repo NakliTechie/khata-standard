@@ -1,1 +1,38 @@
+# OS junk
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.*.un~
+
+# Python (if hash script is Python)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Node (if hash script is Node)
+node_modules/
+package-lock.json
+yarn.lock
+.npm/
+
+# Build artifacts
+dist/
+build/
+*.log
+
+# Local overrides
+.env
+.env.local
+
+# GitHub Actions local testing
+.act/
