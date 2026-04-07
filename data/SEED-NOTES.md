@@ -33,7 +33,7 @@ Full list of 28 Indian states + 8 union territories + the reserved "Other Territ
 
 GST rate bands as they existed at launch on 1 July 2017. Seven bands: 0%, 0.25%, 3%, 5%, 12%, 18%, 28%. Each with validFrom/validTo dating, applicability notes, and rate type classification.
 
-**Note:** These are only the rate *bands*. The mapping of individual HSN codes to rates is in `data/hsn/` and that's where the churn happens — GST Council rate changes almost always move specific HSNs between existing bands rather than introducing new bands.
+**Note:** These are only the rate *bands*. The mapping of individual HSN codes to rates is in `data/hsn-common/` (and eventually `data/hsn-full/`), and that's where the churn happens — GST Council rate changes almost always move specific HSNs between existing bands rather than introducing new bands.
 
 **Ready to use:** yes.
 
@@ -121,7 +121,7 @@ Six compensation cess entries covering tobacco, pan masala, aerated waters, smal
 
 ## hsn-common — PLACEHOLDER ⚠️
 
-**File:** `data/hsn/hsn-common-20250101.json`
+**File:** `data/hsn-common/hsn-common-20250101.json`
 
 Ten illustrative HSN entries and five illustrative SAC entries covering common categories. This is a structural skeleton to unblock development, **not** a usable HSN reference.
 

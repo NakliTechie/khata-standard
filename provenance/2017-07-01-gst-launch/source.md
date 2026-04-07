@@ -81,5 +81,5 @@ This provenance entry was created during repository bootstrap and is retroactive
 ## Related datasets
 
 - `data/gst-rates/gst-rates-20170701.json` — the rate bands themselves
-- `data/hsn/hsn-common-20250101.json` — HSN-to-rate assignments (placeholder; real HSN rate mapping pending)
+- `data/hsn-common/hsn-common-20250101.json` — HSN-to-rate assignments (placeholder; real HSN rate mapping pending)
 - `data/cess/cess-20250101.json` — compensation cess applied alongside the 28% rate on specified items
