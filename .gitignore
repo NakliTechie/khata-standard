@@ -29,6 +29,8 @@ yarn.lock
 dist/
 build/
 *.log
+# ...but provenance logs are part of the evidence trail and must be tracked
+!provenance/**/*.log
 
 # Local overrides
 .env

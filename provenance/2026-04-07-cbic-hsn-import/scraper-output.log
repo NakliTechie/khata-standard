@@ -1,0 +1,17 @@
+fetching https://cbic-gst.gov.in/gst-goods-services-rates.html
+fetched 1441768 bytes
+cached to /Users/chiragpatnaik/Code/Browser/khata-standard/tools/cache/cbic-rate-schedule.html
+parsed source revision date "as on": 2023-04-01
+goods_table: 1853 raw rows
+goods_table parsed: 1518 entries, 78 cess entries, 24 warnings
+service_table: 233 raw rows
+service_table parsed: 82 entries, 15 warnings
+
+=== summary ===
+goods entries: 1518
+sac entries:   82
+cess entries:  78
+warnings:      39
+output file:   /Users/chiragpatnaik/Code/Browser/khata-standard/data/hsn-common/hsn-common-20230401.json
+provenance:    /Users/chiragpatnaik/Code/Browser/khata-standard/provenance/2026-04-07-cbic-hsn-import
+wrote /Users/chiragpatnaik/Code/Browser/khata-standard/data/hsn-common/hsn-common-20230401.json
