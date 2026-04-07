@@ -1,7 +1,7 @@
 {
   "khataStandardVersion": "0.1.0-seed",
   "formatVersion": "1.0",
-  "generatedAt": "2026-04-07T13:02:58Z",
+  "generatedAt": "2026-04-07T13:57:28Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
   "cdn": "https://naklitechie.github.io/khata-standard/data/",
