@@ -1,7 +1,7 @@
 {
   "khataStandardVersion": "0.1.0-seed",
   "formatVersion": "1.0",
-  "generatedAt": "2025-01-01T00:00:00Z",
+  "generatedAt": "2026-04-07T12:20:25Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
   "cdn": "https://naklitechie.com/bahi/reference/",
@@ -9,20 +9,20 @@
     "states": {
       "file": "states-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:9146b5566d0941d53cba64e7eef38a0a2bc49342ec16d32c9cacff1c22f4d19e",
       "status": "stable"
     },
     "gst-rates": {
       "file": "gst-rates-20170701.json",
       "version": "2017-07-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:be261f3b96f1d484430bcf9cb345edd6b1869a0ebc54643fedaabdfc2a97501a",
       "status": "stable",
       "note": "Rate bands only; HSN-to-rate assignments are in the hsn dataset"
     },
     "hsn-common": {
       "file": "hsn-common-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:03fe7edc46c45ec4fe59e98849d648ce23514be96824d3bd730a5588a06164d5",
       "status": "placeholder",
       "note": "Starter set only. Production release requires a curated top-2000 HSN set from CBIC sources."
     },
@@ -36,52 +36,52 @@
     "sac": {
       "file": "sac-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:24e7764d498149058e66970b96fc2fdda4cd3d4e2fb7573fa63b86b10c619b88",
       "status": "placeholder",
       "note": "Starter set of major service categories; needs expansion"
     },
     "cess": {
       "file": "cess-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:3868aa316ab5331f73eec95b891949080cc98619214b656840703699a660cd24",
       "status": "starter"
     },
     "tds-sections": {
       "file": "tds-sections-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:c192c0b86eee29667ad79bf1482fef61f30de653ee4a61fd11234a339c95df8e",
       "status": "starter",
       "note": "Most common sections; not exhaustive"
     },
     "tcs-sections": {
       "file": "tcs-sections-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:2489ce4f541cb2a0f8fd286b5e07ca6ac498336a5354c8bcca827b44172d58e7",
       "status": "starter"
     },
     "rcm-categories": {
       "file": "rcm-categories-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:06193c5560791674b405d3ff31618abf4af5c520a8ad744e3430a024c53a04b1",
       "status": "starter"
     },
     "composition-rates": {
       "file": "composition-rates-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:229f6e01ea0658a67d731806d31cf2bf8208efbca24410dd35af3a25e66acaeb",
       "status": "stable"
     },
     "challan-templates": {
       "file": "challan-templates-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:788c83b559c96e6e791c99f12a498802b9acdb5456f9923582e0fd1f4a03c49f",
       "status": "starter",
       "note": "Most common challans; more state-specific forms to follow"
     },
     "coa-seed": {
       "file": "coa-seed-20250101.json",
       "version": "2025-01-01",
-      "sha256": "TO_BE_COMPUTED_ON_PUBLISH",
+      "sha256": "sha256:e73c0efb21c85224ab2a3c21e44e30d4fdf69178bd199097d3109f90532da639",
       "status": "stable"
     }
   },
