@@ -1,7 +1,7 @@
 {
   "khataStandardVersion": "0.1.0-seed",
   "formatVersion": "1.0",
-  "generatedAt": "2026-04-07T13:57:28Z",
+  "generatedAt": "2026-04-07T17:24:46Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
   "cdn": "https://naklitechie.github.io/khata-standard/data/",
@@ -20,11 +20,11 @@
       "note": "Rate bands only; HSN-to-rate assignments are in the hsn dataset"
     },
     "hsn-common": {
-      "file": "hsn-common-20250101.json",
-      "version": "2025-01-01",
-      "sha256": "sha256:03fe7edc46c45ec4fe59e98849d648ce23514be96824d3bd730a5588a06164d5",
-      "status": "placeholder",
-      "note": "Starter set only. Production release requires a curated top-2000 HSN set from CBIC sources."
+      "file": "hsn-common-20230401.json",
+      "version": "2023-04-01",
+      "sha256": "sha256:7ff4af81b45c5139d17cac98d7b07cd267469eac031ff7ee184d98feb0077a6c",
+      "status": "starter",
+      "note": "Imported from the CBIC GST rate schedule on 2026-04-07 via tools/scrape-cbic-hsn.py. 1518 goods + 82 SAC + 78 cess entries (~430 KB). Source revision date 2023-04-01 — over 2 years stale at import time. Verify against current CBIC rates before production use. Full provenance in provenance/2026-04-07-cbic-hsn-import/."
     },
     "hsn-full": {
       "file": null,
