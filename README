@@ -1,0 +1,155 @@
+# khata-standard
+
+The open file format and reference data standard for browser-native, local-first Indian accounting.
+
+---
+
+## What is `.khata`?
+
+`.khata` is a file format for keeping accounting books — invoices, ledgers, customers, vendors, GST records — as a single portable file on your own computer. No servers. No accounts. No sync. Your books live in a file on your disk, and any compatible application can read or write them.
+
+This repository is the authoritative source for:
+
+1. **The `.khata` format specification** — the structure of the file, the schemas, the rules
+2. **Reference data** — the tables that every `.khata` implementation needs (GST rates, HSN codes, state lists, TDS sections, and more)
+3. **Provenance** — the evidence trail for every reference data change, linked to the originating government notifications
+
+The first implementation of `.khata` is **[Bahi](https://bahi.naklitechie.com)**, a browser-native accounting app. But this format is deliberately not owned by Bahi. Anyone can build a reader, a writer, a mobile viewer, a server-side importer, or a fork. The repo exists so the format can outlive any single application.
+
+---
+
+## Why an open standard?
+
+Indian accounting tools are dominated by two patterns: expensive Windows-only software (Tally), or cloud subscriptions that hold your data on someone else's servers (Zoho Books, Khatabook). Both work well enough, but both come with trade-offs: platform lock-in, annual fees, loss of control over where your data lives, and no graceful fallback if the vendor changes their terms or disappears.
+
+A file-based standard changes this:
+
+- **Your data is yours.** The `.khata` file sits on your disk. You can back it up, email it to your CA, put it on a pendrive, or store it in your own cloud folder. No third party is between you and your books.
+- **Your tool is replaceable.** If Bahi goes away, another tool can read your file. If a new tool appears that's better, you can switch without a migration project. The format is the contract; the apps are interchangeable.
+- **Your compliance is current.** Reference data (GST rates, HSN codes, state lists) is maintained here publicly with provenance. Any app that reads this repo has access to the same current data as every other app.
+
+This model works for audio (MP3, FLAC), for documents (PDF, EPUB), for images (JPEG, PNG), for spreadsheets (ODS). It should work for accounting too.
+
+---
+
+## Repo structure
+
+```
+khata-standard/
+├── README.md                    # you are here
+├── LICENSE                      # MIT for spec/code, CC-BY for data
+├── CONTRIBUTING.md              # how to propose updates
+├── GOVERNANCE.md                # how decisions are made
+├── spec/
+│   ├── khata-format.md          # canonical format specification
+│   ├── manifest.schema.json     # JSON Schema for the file manifest
+│   ├── books-schema.sql         # SQLite DDL for the ledger database
+│   └── audit-log.md             # audit log format and hashing algorithm
+├── data/
+│   ├── states/                  # Indian state list with GSTIN codes, ISO codes, names
+│   ├── gst-rates/               # GST rate bands with effective dates
+│   ├── hsn/                     # HSN codes (common subset + full set)
+│   ├── cess/                    # compensation cess rates by HSN
+│   ├── tds-sections/            # TDS sections under Income Tax Act
+│   ├── tcs-sections/            # TCS sections
+│   ├── rcm-categories/          # reverse charge mechanism supply categories
+│   ├── composition-rates/       # GST composition scheme rates
+│   ├── challan-templates/       # tax payment challan templates (ITNS, PMT, etc.)
+│   └── coa-seed/                # standard Indian chart of accounts seed
+└── provenance/                  # evidence trail for every data change
+    └── YYYY-MM-DD-description/
+        ├── source.md            # links to official notifications
+        ├── notification.pdf     # archived copy of the originating document
+        └── diff-summary.md      # human-readable summary of what changed
+```
+
+---
+
+## How to use this repo
+
+### If you're an end user of Bahi (or another `.khata` app)
+You don't need to interact with this repo directly. Your app pulls reference data from here automatically when you click "Check for updates" in Settings. Everything is transparent, auditable, and versioned — but you can just use the app and trust that the data is current.
+
+If you're curious or want to verify what your app is using, every dataset in `data/` has a commit history showing exactly when it changed, who changed it, and what government notification authorized the change.
+
+### If you're a CA or compliance professional
+You can follow this repo's Releases to be notified of reference data updates as they happen. Each update links to the source notification. If you spot an error or a missing update, open an issue or a PR — see CONTRIBUTING.md.
+
+### If you're a developer building a `.khata` reader or writer
+- Read `spec/khata-format.md` for the file format
+- Validate manifests against `spec/manifest.schema.json`
+- Create your SQLite database using `spec/books-schema.sql`
+- Implement the audit log per `spec/audit-log.md`
+- Fetch reference data from the same CDN Bahi uses (`naklitechie.com/bahi/reference/`), or pull directly from this repo
+
+The format is permissively licensed. You don't need permission from anyone to build on it.
+
+### If you want to contribute
+Read CONTRIBUTING.md. In short: data changes need provenance (a link to the authoritative source), spec changes go through a lightweight RFC process, and everything is reviewed publicly.
+
+---
+
+## Reference data update cycle
+
+Reference data is updated when the underlying regulations change:
+
+- **GST rates / HSN assignments:** after GST Council meetings or CBIC notifications
+- **TDS/TCS sections and rates:** after Union Budget announcements (annually, sometimes mid-year)
+- **State list:** extremely rarely (new state or UT created)
+- **RCM categories:** when the government expands or narrows the reverse charge mechanism
+- **Challan templates:** when tax department forms are updated
+
+Every update lands with:
+1. The updated JSON file in `data/`
+2. A `provenance/` directory with the originating notification and a diff summary
+3. A commit message referencing both
+4. A GitHub release tag so downstream apps can pin to specific versions if needed
+
+The CDN at `naklitechie.com/bahi/reference/` is rebuilt automatically on every merge to `main` via GitHub Actions.
+
+---
+
+## Verification and trust
+
+Reference data drives real tax calculations. Blind trust in a JSON file is not enough. This repo provides three trust layers:
+
+1. **Provenance:** every data change has a linked official source in `provenance/`
+2. **Public history:** every change is a git commit, visible and auditable forever
+3. **Hash verification:** the CDN's `index.json` includes SHA-256 hashes of every data file; apps like Bahi verify hashes before caching downloaded data
+
+If any layer is compromised or suspicious, you'll see it. If you spot something wrong, open an issue immediately.
+
+---
+
+## Current status
+
+This is an early-stage standard. The first reference implementation (Bahi) is under active development. The spec is stable enough to build against, but format version `1.0` is not yet frozen — expect minor additions and clarifications during Bahi's initial months. Backward-compat guarantees kick in fully at `1.0` release, which will be tagged in this repo when ready.
+
+Until then, apps should check `khataFormatVersion` in file manifests and be prepared for minor field additions.
+
+---
+
+## License
+
+- **Specification and code:** MIT License (see LICENSE)
+- **Reference data:** Creative Commons Attribution 4.0 (CC-BY 4.0)
+
+Both licenses are intentionally permissive. Fork it, build on it, commercialize on top of it, contribute back or don't — the goal is for the format to be useful, not to control it.
+
+---
+
+## Maintainers
+
+- Chirag Patnaik ([@NakliTechie](https://github.com/NakliTechie)) — maintainer, primary author
+
+See GOVERNANCE.md for how decisions are made and how the maintainer list may evolve.
+
+---
+
+## Questions or issues?
+
+- **Bugs or errors in reference data:** open an issue on this repo with evidence
+- **Spec clarifications or format questions:** open an issue tagged `spec`
+- **About Bahi specifically:** see [bahi.naklitechie.com](https://bahi.naklitechie.com) or the [Bahi repo](https://github.com/NakliTechie/bahi)
+
+Thanks for being here. The point of an open standard is that you're welcome to participate.
