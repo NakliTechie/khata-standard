@@ -4,7 +4,7 @@
   "generatedAt": "2026-04-07T12:20:25Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
-  "cdn": "https://naklitechie.com/bahi/reference/",
+  "cdn": "https://naklitechie.github.io/khata-standard/data/",
   "datasets": {
     "states": {
       "file": "states-20250101.json",
@@ -86,8 +86,8 @@
     }
   },
   "notes": [
-    "SHA-256 hashes are placeholders ('TO_BE_COMPUTED_ON_PUBLISH') and will be populated by the GitHub Action that publishes to the CDN.",
+    "SHA-256 hashes are computed by .github/scripts/update-index.py and refreshed automatically by the publish workflow on every push that changes data/.",
     "Status values: 'stable' means the dataset is accurate and ready for use; 'starter' means a reasonable initial set that should be reviewed and expanded; 'placeholder' means a structural skeleton that must be replaced before production use.",
-    "Bahi should treat 'placeholder' datasets with extra caution — surface to the user that the data is incomplete and they should exercise judgment on values not covered by the bundled set."
+    "Implementations should treat 'placeholder' datasets with extra caution — surface to the user that the data is incomplete and they should exercise judgment on values not covered by the bundled set."
   ]
 }

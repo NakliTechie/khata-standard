@@ -80,7 +80,7 @@ You can follow this repo's Releases to be notified of reference data updates as 
 - Validate manifests against `spec/manifest.schema.json`
 - Create your SQLite database using `spec/books-schema.sql`
 - Implement the audit log per `spec/audit-log.md`
-- Fetch reference data from the same CDN Bahi uses (`naklitechie.com/bahi/reference/`), or pull directly from this repo
+- Fetch reference data from the published GitHub Pages CDN (`https://naklitechie.github.io/khata-standard/data/`), or pull directly from this repo
 
 The format is permissively licensed. You don't need permission from anyone to build on it.
 
@@ -105,7 +105,7 @@ Every update lands with:
 3. A commit message referencing both
 4. A GitHub release tag so downstream apps can pin to specific versions if needed
 
-The CDN at `naklitechie.com/bahi/reference/` is rebuilt automatically on every merge to `main` via GitHub Actions.
+The CDN at `https://naklitechie.github.io/khata-standard/data/` is rebuilt automatically on every merge to `main` via GitHub Pages.
 
 ---
 

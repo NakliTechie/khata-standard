@@ -1,0 +1,76 @@
+name: Update index and verify published content
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**'
+      - '!data/index.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run hash computation script
+        run: python .github/scripts/update-index.py
+
+      - name: Check for changes
+        id: check
+        run: |
+          if git diff --quiet data/index.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit updated index.json
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "khata-standard-bot"
+          git config user.email "bot@naklitechie.com"
+          git add data/index.json
+          git commit -m "infra: update index.json hashes [skip ci]"
+          git push
+
+  verify:
+    needs: update-index
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Wait for GitHub Pages deployment
+        run: sleep 90
+
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Verify published index.json matches repo
+        run: |
+          PUBLISHED_URL="https://naklitechie.github.io/khata-standard/data/index.json"
+          LOCAL_HASH=$(sha256sum data/index.json | awk '{print $1}')
+          REMOTE_HASH=$(curl -sL "$PUBLISHED_URL" | sha256sum | awk '{print $1}')
+          echo "Local hash:  $LOCAL_HASH"
+          echo "Remote hash: $REMOTE_HASH"
+          if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
+            echo "::warning::Published index.json does not match repo content. This may be a timing issue (GitHub Pages not yet deployed). If verification fails after re-running manually, investigate."
+            exit 1
+          fi
+          echo "Published content verified"
