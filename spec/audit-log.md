@@ -47,7 +47,7 @@ Every entry is a JSON object with these fields:
 ### Required fields
 
 - **`ts`** — ISO 8601 UTC timestamp with millisecond precision. Example: `"2026-04-07T14:32:11.123Z"`. Implementations MUST use UTC.
-- **`actor`** — one of `"owner"`, `"ca"`, or `"system"`. Identifies the category of actor that performed the action.
+- **`actor`** — one of `"owner"`, `"ca"`, `"system"`, or `"ai"`. Identifies the category of actor that performed the action. The value `"ai"` indicates an entry that was drafted by an on-device or remote AI suggestion and explicitly accepted by a human; AI is never a sole actor — see "AI-assisted entries" below.
 - **`action`** — a dotted identifier for the action type. See "Action types" below.
 - **`hash`** — SHA-256 hash forming the chain. See "Hash chain" below. Format: `"sha256:"` followed by 64 lowercase hex characters.
 
@@ -58,6 +58,7 @@ Every entry is a JSON object with these fields:
 - **`ref`** — identifier of the affected entity (invoice number, customer ID, etc.). Shape depends on action type.
 - **`changes`** — for edit actions, a diff showing what changed. Shape depends on action type.
 - **`reason`** — free-text explanation supplied by the user. Always optional.
+- **`aiAssisted`** — boolean. Set to `true` when an entry was drafted by an AI suggestion and accepted by a human actor. Most commonly appears alongside `actor: "ca"` (a CA accepting an AI-drafted entry); for owner-mode AI accepts, `actor: "ai"` is used directly and `aiAssisted` is not set. Implementations MAY omit this field; absence means `false`. See "AI-assisted entries" below.
 - Additional action-specific fields are permitted; implementations should preserve unknown fields on read and write them back unchanged.
 
 ---
@@ -173,6 +174,20 @@ When signing is used:
 - The keypair uses Ed25519 (recommended) or ECDSA P-256
 - Signing is applied to the hash chain, not to individual entries
 - Signature rotation (new keypair) is logged as a `keypair.rotate` action with the new public key
+
+---
+
+## AI-assisted entries
+
+Format version 1.0 recognises that some implementations may surface AI-drafted entry forms (e.g., extracting line items from an uploaded vendor bill, or composing a voucher from natural-language input). The format takes a position on how these entries are recorded:
+
+1. **AI is never an actor on its own.** A human always accepts an AI-drafted entry before it is posted; the audit log records the human acceptance, not the AI proposal.
+2. **`actor: "ai"`** is used when an owner-mode user accepts an AI-drafted entry. The AI is the proximate cause of the entry's contents; the owner is the consenting party.
+3. **`actor: "ca"` + `aiAssisted: true`** is used when a CA in CA-mode accepts an AI-drafted entry. The CA remains the accountable actor; the boolean flag preserves the AI-assist provenance.
+4. **AI prompts are not logged.** Only the accepted entry is logged. The natural-language prompt, the extracted OCR text, and any rejected drafts MUST NOT appear in the audit log payload — they often contain sensitive financial context and add no forensic value beyond the accepted entry.
+5. **No AI-specific fields beyond `aiAssisted`.** Implementations MUST NOT add fields like `aiProvider`, `aiModel`, `aiConfidence`, etc. to the audit-log payload at format version 1.0. These are useful for debugging in implementation memory but are not part of the format's forensic surface.
+
+The hash chain treats the new actor value and the optional `aiAssisted` field exactly like any other actor or payload field — they participate in canonical-JSON serialization and signing without special-casing.
 
 ---
 
