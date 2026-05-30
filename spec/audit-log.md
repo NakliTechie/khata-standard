@@ -21,12 +21,12 @@ The audit log is **not** a security mechanism in the strong cryptographic sense.
 
 ## Storage
 
-The audit log is an append-only sequence of entries. Two storage layouts are permitted; an implementation MUST commit to one as authoritative:
+The audit log lives in `books.sqlite` as an append-only `audit_log` table — one row per entry (see [`books-schema.sql`](books-schema.sql)). The manifest mirrors two anchors so the chain head can be checked without opening the database:
 
-- **In `books.sqlite`** — an `audit_log` table, one row per entry (the layout the reference implementation uses). The manifest then carries only `integrity.auditHead` (the latest entry's `hash`) and `integrity.signedBy` (the signing public key), so the chain head is checkable without opening the database.
-- **In `manifest.json`** — an `auditLog` array of entry objects, with the database holding at most a cached copy.
+- `integrity.auditHead` — the latest entry's `hash` (the chain head).
+- `integrity.signedBy` — the signing public key (JWK).
 
-Either way the log is append-only: no implementation may modify or delete existing entries, and the hash chain (below) makes any such modification detectable.
+The log is append-only: no implementation may modify or delete existing rows, and the hash chain (below) makes any such modification detectable.
 
 ---
 

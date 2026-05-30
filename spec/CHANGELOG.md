@@ -12,6 +12,15 @@ Each spec file also carries a `**Last revised:**` line in its header pointing ba
 
 ## 1.0-draft
 
+### 2026-05-30 — spec aligned to the reference implementation (schema 12)
+
+Now that Bahi exercises the format at scale, the spec tracks its actual output rather than a parallel abstract model — simpler and clearer for any implementer. *(Resolves #3 and #4.)*
+
+- **`books-schema.sql`** — replaced the abstract `transactions`/`transaction_lines` skeleton with the reference implementation's real **schema 12** DDL (35 tables; INTEGER paise; `audit_log` with `hash_version`; header + per-line `cess`; document-level reference-data snapshots as columns). Loads cleanly in SQLite.
+- **`manifest.schema.json`** — rewritten to validate the reference implementation's real `manifest.json`: top-level `workspaceId` / `uiTier` / `snapshots`; `company` with snake_case fields + `changeHistory`; `integrity` with `booksHash` + `auditHead` (bare 64-hex) + `signedBy` as a **JWK object**. Removed the `auditLog` / `invoiceSeries` / `periodLocks` / `financialYears` manifest arrays — those live in `books.sqlite`. Validated against a real generated manifest.
+- **`khata-format.md`** — file structure (added `snapshots/`), manifest field list, and `books.sqlite` key-table list updated to match; the audit log is documented in the `audit_log` table rather than the manifest; CDN URL corrected to the GitHub Pages endpoint.
+- **`audit-log.md`** — Storage simplified to the single actual model: the `audit_log` table in `books.sqlite`, with the manifest mirroring `auditHead` + `signedBy`.
+
 ### 2026-05-30 — audit-log hash chain locked; structured compensation-cess schema
 
 **`audit-log.md`** — the hash chain is now locked and test-vector-backed.

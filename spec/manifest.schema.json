@@ -2,151 +2,124 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/NakliTechie/khata-standard/blob/main/spec/manifest.schema.json",
   "title": "Khata Manifest",
-  "description": "PLACEHOLDER — JSON Schema for the manifest.json file at the root of every .khata archive. This placeholder captures the high-level structure. The final schema will be finalized once the Bahi reference implementation completes Phase 1 and the exact field set is locked. Until then, implementations should follow the example in khata-format.md and the Bahi spec §3.2, and expect field additions in the minor version range.",
+  "description": "JSON Schema for the manifest.json at the root of every .khata archive, aligned with the reference implementation (Bahi) at schema 12. The audit log, invoice series, period locks, and FY closings live in books.sqlite tables — not in the manifest; the manifest carries identity, integrity (books hash + audit-chain head + signing key), and lightweight history.",
   "type": "object",
   "required": [
     "khataFormatVersion",
     "schemaVersion",
+    "workspaceId",
     "createdAt",
     "lastModifiedAt",
     "company",
-    "auditLog",
+    "uiTier",
     "integrity"
   ],
+  "additionalProperties": true,
   "properties": {
     "khataFormatVersion": {
       "type": "string",
-      "description": "The .khata format version this file conforms to. Follows semantic versioning.",
+      "description": "The .khata format version this file conforms to. Semantic versioning.",
       "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$",
       "examples": ["1.0", "1.0.0"]
     },
     "schemaVersion": {
       "type": "integer",
-      "description": "Internal SQLite schema version. Bumped when books.sqlite structure changes.",
+      "description": "Internal SQLite schema version of books.sqlite. Bumped when the structure changes; the reference implementation is at 12.",
       "minimum": 1
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Stable per-file workspace identifier (UUID). Local browser storage (keypair, settings) is keyed by this."
     },
     "createdAt": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO 8601 timestamp of when the file was first created. Immutable after creation."
+      "description": "ISO 8601 UTC timestamp of first creation. Immutable after creation."
     },
     "lastModifiedAt": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO 8601 timestamp of the most recent save."
+      "description": "ISO 8601 UTC timestamp of the most recent save."
     },
     "company": {
       "type": "object",
-      "description": "Current company identity. Historical identity snapshots live on individual transactions; this block is the current state only.",
-      "required": ["name", "pan", "state"],
+      "description": "Current company identity. Per-document historical identity is snapshotted on each transaction; this block is the current state, with a changeHistory trail for rename/identity-drift detection.",
+      "required": ["name"],
+      "additionalProperties": true,
       "properties": {
-        "name": {
-          "type": "string",
-          "description": "Current legal name of the company"
-        },
-        "tradeName": {
-          "type": "string",
-          "description": "Current trade name if different from legal name"
-        },
-        "type": {
-          "type": "string",
-          "enum": ["proprietorship", "partnership", "llp", "private_limited", "public_limited", "other"]
+        "name": { "type": "string", "description": "Current legal name." },
+        "trade_name": { "type": ["string", "null"], "description": "Trade name if different from the legal name." },
+        "company_type": {
+          "type": ["string", "null"],
+          "enum": ["proprietorship", "partnership", "llp", "private-limited", "public-limited", "huf", "other", null]
         },
         "gstin": {
           "type": ["string", "null"],
-          "description": "15-character GSTIN; null if company is not GST-registered",
+          "description": "15-character GSTIN; null if not GST-registered.",
           "pattern": "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$"
         },
-        "pan": {
-          "type": "string",
-          "description": "10-character PAN",
-          "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]$"
+        "pan": { "type": ["string", "null"], "description": "10-character PAN.", "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]$" },
+        "tan": { "type": ["string", "null"], "description": "10-character TAN; required only for TDS deductors.", "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$" },
+        "state": { "type": "string", "description": "2-letter ISO 3166-2:IN subdivision code (canonical state identifier).", "pattern": "^[A-Z]{2}$" },
+        "stateName": { "type": "string", "description": "Human-readable state name (denormalized)." },
+        "gstinStateCode": { "type": ["string", "null"], "description": "2-digit GSTIN state code; derivable from the GSTIN.", "pattern": "^[0-9]{2}$" },
+        "address": { "type": ["string", "null"] },
+        "fy_start": { "type": ["string", "null"], "description": "Financial-year start (YYYY-MM-DD, typically April 1)." },
+        "composition": {
+          "type": "object",
+          "description": "GST composition-scheme state.",
+          "properties": { "enabled": { "type": "boolean" } }
         },
-        "tan": {
-          "type": ["string", "null"],
-          "description": "10-character TAN; optional, required only for TDS deductors",
-          "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$"
-        },
-        "state": {
-          "type": "string",
-          "description": "2-letter ISO 3166-2:IN subdivision code (canonical state identifier)",
-          "pattern": "^[A-Z]{2}$"
-        },
-        "stateName": {
-          "type": "string",
-          "description": "Human-readable state name (denormalized from state reference data)"
-        },
-        "gstinStateCode": {
-          "type": ["string", "null"],
-          "description": "2-digit GSTIN state code; derivable from GSTIN first two characters",
-          "pattern": "^[0-9]{2}$"
-        },
-        "financialYearStart": {
-          "type": "string",
-          "format": "date",
-          "description": "Financial year start date (typically April 1)"
-        },
-        "compositionScheme": {
-          "type": "boolean",
-          "description": "True if company is registered under the GST composition scheme",
-          "default": false
-        },
-        "uiTier": {
-          "type": "string",
-          "enum": ["freelancer", "service", "goods", "everything"],
-          "description": "Progressive unlock tier for user-facing UI"
+        "changeHistory": {
+          "type": "array",
+          "description": "Append-only trail of identity changes (name/GSTIN/etc.). Wrong-file detection on open walks this so a renamed company doesn't false-positive against an older copy.",
+          "items": { "type": "object" }
         }
       }
     },
-    "auditLog": {
+    "uiTier": {
+      "type": "string",
+      "description": "Progressive-unlock tier for the user-facing UI.",
+      "enum": ["freelancer", "service", "goods", "everything"]
+    },
+    "snapshots": {
       "type": "array",
-      "description": "Append-only log of every state-changing action. See audit-log.md for the detailed format.",
-      "items": {
-        "type": "object",
-        "required": ["ts", "actor", "action", "hash"],
-        "properties": {
-          "ts": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "actor": {
-            "type": "string",
-            "enum": ["owner", "ca", "system"]
-          },
-          "actorName": {
-            "type": "string"
-          },
-          "origin": {
-            "type": "string",
-            "description": "The origin URL from which the change was made (e.g., https://bahi.naklitechie.com or file://...)"
-          },
-          "action": {
-            "type": "string",
-            "description": "The action type (e.g., 'invoice.create', 'company.edit', 'reference.update')"
-          },
-          "ref": {
-            "type": "string",
-            "description": "Optional reference to the affected entity (e.g., invoice number)"
-          },
-          "changes": {
-            "type": "object",
-            "description": "Optional diff for edit actions; shape depends on action type"
-          },
-          "reason": {
-            "type": "string",
-            "description": "Optional free-text reason for the change"
-          },
-          "hash": {
-            "type": "string",
-            "description": "SHA-256 hash of (previous hash || entry content); used for hash chain verification",
-            "pattern": "^sha256:[0-9a-f]{64}$"
+      "description": "Metadata for the rolling in-file save snapshots stored under snapshots/ in the archive.",
+      "items": { "type": "object" }
+    },
+    "integrity": {
+      "type": "object",
+      "description": "Tamper-evidence anchors. booksHash pins the database bytes; auditHead is the latest audit-log entry's hash; signedBy is the current signing public key.",
+      "required": ["booksHash", "auditHead"],
+      "additionalProperties": true,
+      "properties": {
+        "booksHash": {
+          "type": "string",
+          "description": "SHA-256 of the current books.sqlite bytes, 64 lowercase hex (no prefix).",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "auditHead": {
+          "type": "string",
+          "description": "Hash of the most recent audit_log entry (the chain head), 64 lowercase hex. See audit-log.md.",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "signedBy": {
+          "type": ["object", "null"],
+          "description": "Public key (JWK) of the keypair signing audit-log entries. Present only when the file is signed; absent/null for unsigned files.",
+          "properties": {
+            "kty": { "type": "string" },
+            "crv": { "type": "string" },
+            "x": { "type": "string" },
+            "y": { "type": "string" },
+            "ext": { "type": "boolean" },
+            "key_ops": { "type": "array", "items": { "type": "string" } }
           }
         }
       }
     },
     "modeHistory": {
       "type": "array",
-      "description": "Record of when this file was opened in Owner vs CA mode",
+      "description": "Record of when the file was opened in owner vs CA mode.",
       "items": {
         "type": "object",
         "properties": {
@@ -156,67 +129,10 @@
         }
       }
     },
-    "integrity": {
+    "recoveredFrom": {
       "type": "object",
-      "required": ["booksHash"],
-      "properties": {
-        "booksHash": {
-          "type": "string",
-          "description": "SHA-256 hash of the current books.sqlite content",
-          "pattern": "^sha256:[0-9a-f]{64}$"
-        },
-        "signedBy": {
-          "type": "string",
-          "description": "Public key of the keypair that signed the most recent audit log entry"
-        }
-      }
-    },
-    "invoiceSeries": {
-      "type": "array",
-      "description": "Multiple concurrent invoice numbering series (domestic, export, SEZ, etc.). See Bahi spec §10.16.",
-      "items": {
-        "type": "object",
-        "required": ["seriesId", "name", "prefix", "currentNumber"],
-        "properties": {
-          "seriesId": { "type": "string" },
-          "name": { "type": "string" },
-          "prefix": { "type": "string" },
-          "suffix": { "type": "string" },
-          "currentNumber": { "type": "integer", "minimum": 0 },
-          "resetOnFY": { "type": "boolean" },
-          "defaultFor": {
-            "type": "array",
-            "items": { "type": "string" }
-          }
-        }
-      }
-    },
-    "periodLocks": {
-      "type": "array",
-      "description": "Periods for which returns have been filed and entries are locked. See Bahi spec §10.3.",
-      "items": {
-        "type": "object",
-        "properties": {
-          "returnType": { "type": "string", "enum": ["gstr1", "gstr3b", "cmp08", "gstr4"] },
-          "periodFrom": { "type": "string", "format": "date" },
-          "periodTo": { "type": "string", "format": "date" },
-          "filedAt": { "type": "string", "format": "date-time" },
-          "filedBy": { "type": "string" }
-        }
-      }
-    },
-    "financialYears": {
-      "type": "array",
-      "description": "Record of financial years with opening/closing balances. See Bahi spec §10.4.",
-      "items": {
-        "type": "object",
-        "properties": {
-          "startDate": { "type": "string", "format": "date" },
-          "endDate": { "type": "string", "format": "date" },
-          "status": { "type": "string", "enum": ["open", "closed"] },
-          "closedAt": { "type": "string", "format": "date-time" }
-        }
-      }
+      "description": "Present only on files produced by corruption recovery; records the source file and the snapshot/audit head recovered from.",
+      "additionalProperties": true
     }
   }
 }

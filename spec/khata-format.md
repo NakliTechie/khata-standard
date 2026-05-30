@@ -3,6 +3,7 @@
 **Version:** 1.0 (draft)
 **Status:** draft — will be frozen at 1.0 once the first reference implementation (Bahi) reaches beta
 **Changes:** tracked version-by-version in [CHANGELOG.md](CHANGELOG.md)
+**Last revised:** 2026-05-30 — file structure, manifest fields, and `books.sqlite` table list aligned with the reference implementation (schema 12).
 
 ---
 
@@ -26,17 +27,14 @@ A `.khata` file is a standard ZIP archive with the extension `.khata`. Any ZIP t
 
 ```
 mybooks.khata
-├── manifest.json          # metadata, schema version, audit log, signatures
-├── books.sqlite           # the double-entry ledger database
-├── attachments/           # user-uploaded supporting documents
-│   ├── invoices/          # generated invoice PDFs (optional cache)
-│   ├── receipts/          # scanned bills and payment proofs
-│   ├── scans/             # other scanned documents
-│   └── ewaybills/         # e-way bill exports
+├── manifest.json          # identity, schema version, integrity (hashes + signing key)
+├── books.sqlite           # the double-entry ledger AND the append-only audit log
+├── snapshots/             # rolling in-file save snapshots (crash / corruption recovery)
+├── attachments/           # user-uploaded supporting documents (scanned bills, etc.)
 └── exports/               # cached report exports (optional)
 ```
 
-The minimum required files are `manifest.json` and `books.sqlite`. The `attachments/` and `exports/` directories are optional.
+The minimum required files are `manifest.json` and `books.sqlite`. The `snapshots/`, `attachments/`, and `exports/` directories are optional.
 
 ---
 
@@ -45,14 +43,16 @@ The minimum required files are `manifest.json` and `books.sqlite`. The `attachme
 The manifest is the entry point and must exist at the root of the archive. It contains:
 
 - `khataFormatVersion` — the format spec version this file conforms to (e.g., `"1.0"`)
-- `schemaVersion` — the internal SQLite schema version (e.g., `1`)
+- `schemaVersion` — the internal `books.sqlite` schema version (e.g., `12`)
+- `workspaceId` — stable per-file identifier (UUID)
 - `createdAt` / `lastModifiedAt` — ISO 8601 timestamps
-- `company` — current company identity fields
-- `auditLog` — append-only log of every state-changing action
+- `company` — current company identity fields, with a `changeHistory` rename trail
+- `uiTier` — progressive-unlock UI tier
+- `snapshots` — metadata for the in-file save snapshots
+- `integrity` — `booksHash` (database bytes), `auditHead` (audit-chain head), `signedBy` (signing public key, JWK)
 - `modeHistory` — record of when this file was opened in Owner vs CA mode
-- `integrity` — hashes and signatures proving the ledger state
 
-See `manifest.schema.json` in this directory for the full JSON Schema.
+The audit log itself lives in `books.sqlite` (the `audit_log` table), **not** the manifest; the manifest only mirrors its head hash in `integrity.auditHead`. See `manifest.schema.json` in this directory for the full JSON Schema.
 
 ### Canonical state representation
 
@@ -69,13 +69,13 @@ A standard SQLite database containing the accounting records. The schema is defi
 Key tables (partial list, full DDL in the schema file):
 
 - `accounts` — chart of accounts
-- `transactions` — all posted transactions
-- `transaction_lines` — individual line items
-- `customers` — customer master
-- `vendors` — vendor master
-- `items` — item and service master
-- `company_identity_snapshots` — historical snapshots of company identity at each posting
-- `tax_rate_snapshots` — rate values as they were at each posting
+- `entries` / `entry_lines` — the double-entry ledger (every posting)
+- `invoices` / `invoice_lines`, `purchases` / `purchase_lines` — sales and purchase documents
+- `customers`, `vendors`, `items` — masters
+- `stock_movements`, `batches` — inventory (Weighted Average Cost + FIFO)
+- `audit_log` — the append-only, hash-chained audit log (see `audit-log.md`)
+
+Each posted document carries its own immutable reference-data snapshots as columns (e.g. `company_snapshot` / `customer_snapshot` JSON on `invoices`; literal `tax_rate` and `cess` on each line) rather than in separate snapshot tables.
 
 ### Historical integrity principle
 
@@ -94,13 +94,13 @@ See `audit-log.md` for how changes to reference data are recorded without alteri
 
 ## Audit log
 
-Every state-changing action appends an entry to the audit log in `manifest.json`. The log is:
+Every state-changing action appends an entry to the `audit_log` table in `books.sqlite`. The log is:
 
 - **Append-only** — entries are never deleted or modified
-- **Hash-chained** — each entry includes a hash derived from the previous entry, making tampering detectable
-- **Signed** — entries are signed by a keypair that can be rotated (but rotations themselves are logged)
+- **Hash-chained** — each entry's hash covers the previous entry's hash (a versioned preimage), making tampering detectable
+- **Signed** — each entry's hash may be signed by a keypair that can be rotated (rotations themselves are logged)
 
-See `audit-log.md` in this directory for the detailed specification.
+The manifest mirrors the chain head in `integrity.auditHead` and the signing key in `integrity.signedBy`. See `audit-log.md` for the detailed specification, including the canonical-JSON rules and test vectors.
 
 ---
 
@@ -124,7 +124,7 @@ Bahi's implementation of these rules is documented in the Bahi spec §10.18.
 
 ## Reference data
 
-Reference data (HSN codes, GST rates, state list, TDS sections, etc.) is NOT stored in the `.khata` file. It lives in the `khata-standard` repository under `data/` and is distributed via the CDN at `naklitechie.com/bahi/reference/`. Applications fetch reference data on demand (user-initiated) and cache it locally.
+Reference data (HSN codes, GST rates, state list, TDS sections, etc.) is NOT stored in the `.khata` file. It lives in the `khata-standard` repository under `data/` and is distributed via the CDN at `https://naklitechie.github.io/khata-standard/data/` (SHA-256 verified per dataset against `data/index.json`). Applications fetch reference data on demand (user-initiated) and cache it locally.
 
 The rationale: reference data changes over time and is not specific to any one company's books. Embedding it in every `.khata` file would bloat files unnecessarily and make updates impossible without re-writing every file.
 
