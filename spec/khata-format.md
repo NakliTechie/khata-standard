@@ -2,6 +2,7 @@
 
 **Version:** 1.0 (draft)
 **Status:** draft — will be frozen at 1.0 once the first reference implementation (Bahi) reaches beta
+**Changes:** tracked version-by-version in [CHANGELOG.md](CHANGELOG.md)
 
 ---
 

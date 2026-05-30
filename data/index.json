@@ -1,7 +1,7 @@
 {
   "khataStandardVersion": "0.1.0-seed",
   "formatVersion": "1.0",
-  "generatedAt": "2026-05-30T06:34:28Z",
+  "generatedAt": "2026-05-30T07:54:34Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
   "cdn": "https://naklitechie.github.io/khata-standard/data/",
@@ -43,9 +43,9 @@
     "cess": {
       "file": "cess-20250922.json",
       "version": "2025-09-22",
-      "sha256": "sha256:655a8e3bf34597beb0103417128c14e6f5fe19870cdb95c2b9d16161ef668b98",
+      "sha256": "sha256:91461774313d5e40a93fbd8ab0f02f1f877479049d5243bcecd109f5f1d1250f",
       "status": "starter",
-      "note": "Updated for the GST 2.0 cess discontinuation (w.e.f. 2025-09-22): non-tobacco entries carry validTo 2025-09-21; the two ambiguous 8703 car entries were consolidated into one non-auto-applicable entry. Still a starter set — cars/cigarettes/coal need granular sub-classification."
+      "note": "GST 2.0 cess discontinuation (w.e.f. 2025-09-22): non-tobacco entries carry validTo 2025-09-21; the two ambiguous 8703 car entries consolidated into one non-auto-applicable entry. Now uses the structured cess schema (spec/cess-schema.md): cessType + cessRate + specific{amount,unit} + raw + autoApplicable. Still a starter set — cars/cigarettes/coal need granular sub-classification."
     },
     "tds-sections": {
       "file": "tds-sections-20250101.json",

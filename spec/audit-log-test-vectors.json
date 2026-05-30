@@ -1,0 +1,137 @@
+{
+  "description": "Test vectors for the .khata audit-log hash chain. Any implementation that reproduces these exact canonical strings and SHA-256 hashes will verify chains written by the reference implementation (Bahi).",
+  "canonicalJsonRules": "Recursively sort object keys ascending by code unit; JSON.stringify primitives; no whitespace outside strings; UTF-8, non-ASCII NOT escaped; array order preserved.",
+  "genesisPrevHash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "hashFormat": "64 lowercase hex chars, no prefix",
+  "canonicalJsonExamples": [
+    {
+      "input": {
+        "b": 1,
+        "a": 2
+      },
+      "note": "keys sorted",
+      "canonical": "{\"a\":2,\"b\":1}"
+    },
+    {
+      "input": {
+        "z": [
+          3,
+          1,
+          2
+        ],
+        "a": {
+          "y": 1,
+          "x": 2
+        }
+      },
+      "note": "nested objects sorted, array order preserved",
+      "canonical": "{\"a\":{\"x\":2,\"y\":1},\"z\":[3,1,2]}"
+    },
+    {
+      "input": {
+        "amount": 120000,
+        "desc": "Aerated water ₹",
+        "n": null,
+        "ok": true
+      },
+      "note": "integer, unicode (no \\u escaping), null, bool",
+      "canonical": "{\"amount\":120000,\"desc\":\"Aerated water ₹\",\"n\":null,\"ok\":true}"
+    }
+  ],
+  "hashVectors": {
+    "v1_legacy": {
+      "hash_version": null,
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "origin": "https://bahi.naklitechie.com",
+      "payload": "{}",
+      "preimage_rule": "prev_hash + origin + payload",
+      "preimage": "0000000000000000000000000000000000000000000000000000000000000000https://bahi.naklitechie.com{}",
+      "hash": "ad64e07aa06b618fb995f7f2cf8d161f94ba13f5186b7cdbe991899cd5e0ec81"
+    },
+    "v2_first": {
+      "hash_version": 2,
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "ts": "2026-04-07T14:32:11.123Z",
+      "actor": "owner",
+      "action": "company.create",
+      "ref": "company:1",
+      "origin": "https://bahi.naklitechie.com",
+      "payload": "{\"companyName\":\"Acme Traders\",\"gstin\":\"27AAAAA0000A1Z5\"}",
+      "preimage": "{\"action\":\"company.create\",\"actor\":\"owner\",\"origin\":\"https://bahi.naklitechie.com\",\"payload\":\"{\\\"companyName\\\":\\\"Acme Traders\\\",\\\"gstin\\\":\\\"27AAAAA0000A1Z5\\\"}\",\"prev\":\"0000000000000000000000000000000000000000000000000000000000000000\",\"ref\":\"company:1\",\"ts\":\"2026-04-07T14:32:11.123Z\",\"v\":2}",
+      "hash": "bb9f2a3dac25b9aadd865a563a04db60d43aa983e99198a737e3f689c3d0bae1"
+    },
+    "v2_linked": {
+      "hash_version": 2,
+      "prev_hash": "bb9f2a3dac25b9aadd865a563a04db60d43aa983e99198a737e3f689c3d0bae1",
+      "ts": "2026-04-07T14:32:11.124Z",
+      "actor": "owner",
+      "action": "entry.post",
+      "ref": "entry:1",
+      "origin": "https://bahi.naklitechie.com",
+      "payload": "{\"entryId\":1,\"voucherType\":\"sales\",\"totalDr\":118000}",
+      "preimage": "{\"action\":\"entry.post\",\"actor\":\"owner\",\"origin\":\"https://bahi.naklitechie.com\",\"payload\":\"{\\\"entryId\\\":1,\\\"voucherType\\\":\\\"sales\\\",\\\"totalDr\\\":118000}\",\"prev\":\"bb9f2a3dac25b9aadd865a563a04db60d43aa983e99198a737e3f689c3d0bae1\",\"ref\":\"entry:1\",\"ts\":\"2026-04-07T14:32:11.124Z\",\"v\":2}",
+      "hash": "a4c476d4ad5b1b60072d99c74d7888732bba4dc629672aa0fc84a36169a14e66"
+    }
+  },
+  "goldenChainSample": {
+    "source": "consulting.khata books.sqlite, first 4 audit_log rows",
+    "rows": [
+      {
+        "id": 1,
+        "ts": "2021-04-01T09:00:00.006Z",
+        "actor": "owner",
+        "action": "file.create",
+        "ref": "consulting.khata",
+        "origin": "local-file://generator.py",
+        "payload": "{\"companyName\":\"Arjun Rao Advisory LLP\",\"formatVersion\":\"1.0\",\"gstin\":\"29AAEFA9012C1Z7\",\"schemaVersion\":12,\"stateIso\":\"KA\"}",
+        "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "stored_hash": "11ad3b6072f9f2a2994bf725b350c63ff9aa8837f65e7c45982be38b48ced916",
+        "hash_version": 2,
+        "recomputed_hash": "11ad3b6072f9f2a2994bf725b350c63ff9aa8837f65e7c45982be38b48ced916",
+        "matches": true
+      },
+      {
+        "id": 2,
+        "ts": "2021-04-01T09:00:00.007Z",
+        "actor": "owner",
+        "action": "session.start",
+        "ref": null,
+        "origin": "local-file://generator.py",
+        "payload": "{\"origin\":\"local-file://generator.py\"}",
+        "prev_hash": "11ad3b6072f9f2a2994bf725b350c63ff9aa8837f65e7c45982be38b48ced916",
+        "stored_hash": "679b1459852480bf2b4f4e9473f492a1e3c31dd7f91e1415982b9e831ab850c9",
+        "hash_version": 2,
+        "recomputed_hash": "679b1459852480bf2b4f4e9473f492a1e3c31dd7f91e1415982b9e831ab850c9",
+        "matches": true
+      },
+      {
+        "id": 3,
+        "ts": "2021-04-01T09:00:00.009Z",
+        "actor": "owner",
+        "action": "customer.create",
+        "ref": "customer:1",
+        "origin": "local-file://generator.py",
+        "payload": "{\"customerId\":1,\"gstin\":\"29NQRWD2634A1Z4\",\"name\":\"Stitch Labs Pvt Ltd\",\"state\":\"KA\"}",
+        "prev_hash": "679b1459852480bf2b4f4e9473f492a1e3c31dd7f91e1415982b9e831ab850c9",
+        "stored_hash": "f1b9bc56eb340fce74b6ae1243cb1f6384dcb534b85dd560f3cf3eb0c1d26d7e",
+        "hash_version": 2,
+        "recomputed_hash": "f1b9bc56eb340fce74b6ae1243cb1f6384dcb534b85dd560f3cf3eb0c1d26d7e",
+        "matches": true
+      },
+      {
+        "id": 4,
+        "ts": "2021-04-01T09:00:00.011Z",
+        "actor": "owner",
+        "action": "customer.create",
+        "ref": "customer:2",
+        "origin": "local-file://generator.py",
+        "payload": "{\"customerId\":2,\"gstin\":\"29ADFYQ4696Y1Z6\",\"name\":\"Razorpath Tech\",\"state\":\"KA\"}",
+        "prev_hash": "f1b9bc56eb340fce74b6ae1243cb1f6384dcb534b85dd560f3cf3eb0c1d26d7e",
+        "stored_hash": "619e2871f00c0be4c9ef7258812e61395a069fa4d681cc5499b4c9eb222f95b4",
+        "hash_version": 2,
+        "recomputed_hash": "619e2871f00c0be4c9ef7258812e61395a069fa4d681cc5499b4c9eb222f95b4",
+        "matches": true
+      }
+    ]
+  }
+}

@@ -28,8 +28,13 @@
 --
 --   4. Soft delete only for posted entries; drafts can be hard-deleted.
 --
---   5. Audit log primary storage is in manifest.json, not here; this DB
---      carries the ledger only.
+--   5. Audit log MAY be stored here — the reference implementation uses the
+--      `audit_log` table below — or as an array in manifest.json. Either way
+--      the manifest carries the chain head (integrity.auditHead) and the
+--      signing public key. Hash chain + versioning: see spec/audit-log.md.
+--
+-- Last revised 2026-05-30: added the audit_log table (with hash_version) and
+-- cess field references, aligning with spec/audit-log.md and spec/cess-schema.md.
 
 PRAGMA foreign_keys = ON;
 PRAGMA journal_mode = WAL;
@@ -136,7 +141,7 @@ CREATE TABLE transactions (
     -- Totals
     subtotal NUMERIC NOT NULL,
     tax_total NUMERIC NOT NULL,
-    cess_total NUMERIC DEFAULT 0,
+    cess_total NUMERIC DEFAULT 0,        -- total compensation cess (see spec/cess-schema.md)
     tcs_total NUMERIC DEFAULT 0,
     round_off NUMERIC DEFAULT 0,
     grand_total NUMERIC NOT NULL,
@@ -189,8 +194,8 @@ CREATE TABLE transaction_lines (
     sgst_amount NUMERIC DEFAULT 0,
     igst_rate NUMERIC DEFAULT 0,
     igst_amount NUMERIC DEFAULT 0,
-    cess_rate NUMERIC DEFAULT 0,
-    cess_amount NUMERIC DEFAULT 0,
+    cess_rate NUMERIC DEFAULT 0,         -- ad-valorem cess % snapshot (0 for specific/compound)
+    cess_amount NUMERIC DEFAULT 0,       -- computed line cess; rate derivation per spec/cess-schema.md
 
     tcs_section TEXT,                    -- e.g., '206C(1H)'
     tcs_rate NUMERIC DEFAULT 0,
@@ -310,6 +315,29 @@ CREATE TABLE eway_bills (
     reason TEXT,
     generated_at TEXT
 );
+
+-- ============================================================================
+-- AUDIT LOG  (tamper-evident; see spec/audit-log.md)
+-- ============================================================================
+-- The reference implementation stores the append-only audit log here. Each row
+-- chains to its predecessor via prev_hash/hash; hash_version selects the hash
+-- preimage (2 = current all-field; 1/NULL = legacy, verify-only). signature is
+-- an optional per-row ECDSA signature over `hash`. The manifest mirrors the
+-- head hash in integrity.auditHead and the signing key in integrity.signedBy.
+CREATE TABLE audit_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ts TEXT NOT NULL,                    -- ISO 8601 UTC, millisecond precision
+    actor TEXT NOT NULL,                 -- 'owner' | 'ca' | 'system' | 'ai'
+    action TEXT NOT NULL,                -- dotted action type, e.g. 'invoice.post'
+    ref TEXT,                            -- affected entity, e.g. 'INV-2026-0001'
+    origin TEXT,                         -- origin URL the action was taken from
+    payload TEXT,                        -- canonical-JSON string of the entry body
+    prev_hash TEXT NOT NULL,             -- previous row's hash (64 zeros for the first)
+    hash TEXT NOT NULL,                  -- 64 lowercase hex, no prefix
+    signature TEXT,                      -- optional base64 ECDSA signature over hash
+    hash_version INTEGER                 -- 2 = current; 1/NULL = legacy (verify-only)
+);
+CREATE INDEX idx_audit_log_ts ON audit_log(ts);
 
 -- ============================================================================
 -- NOTES

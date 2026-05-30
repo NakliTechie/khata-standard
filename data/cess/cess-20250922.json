@@ -2,15 +2,18 @@
   "datasetVersion": "2025-09-22",
   "description": "GST Compensation Cess — starter set covering commonly-encountered items. NOT exhaustive.",
   "publishedOn": "2026-05-30",
+  "schema": "Each entry: { cessId, description, hsnPattern (prefix match), cessType (ad_valorem | specific | compound | conditional), cessRate (ad-valorem percent, or null), specific {amount, currency, unit} when a determinate per-unit component exists, raw (verbatim source text), autoApplicable (computable from HSN+date alone), validFrom, validTo, note }. Full definition: spec/cess-schema.md.",
   "source": "GST (Compensation to States) Act 2017; CBIC Notification No. 1/2017-Compensation Cess (Rate) and subsequent amendments. 2025 update: under GST 2.0 the compensation cess was discontinued for all goods EXCEPT the tobacco family with effect from 2025-09-22 — verify the exact notification before production use.",
-  "notes": "Compensation cess applies in addition to the normal GST rate on specified luxury / sin goods. Rates are often extraordinarily high (motor vehicles, tobacco, aerated beverages, coal) and change with GST Council decisions — verify against current CBIC notifications. Specific / compound cess (ad valorem + per-unit) must be supported by the consuming application. IMPORTANT: under GST 2.0 the compensation cess was discontinued with effect from 2025-09-22 for ALL goods EXCEPT the tobacco family (cigarettes, pan masala / gutkha, chewing tobacco, zarda, bidi). The non-tobacco entries below therefore carry validTo 2025-09-21 so that invoices dated before the cutover still resolve the historical rate while later invoices resolve to no cess. Confirm the exact notification + cutover date. Motor-vehicle cess (1%-22%) depends on engine capacity, length and SUV/category criteria that are NOT encoded in the HSN, so it is a single non-auto-applicable entry (cessRate null) — determine the correct bracket manually from the notification.",
+  "notes": "Compensation cess applies in addition to the normal GST rate on specified luxury / sin goods. Rates are often extraordinarily high (motor vehicles, tobacco, aerated beverages, coal) and change with GST Council decisions — verify against current CBIC notifications. cessType discriminates the shape: 'ad_valorem' carries a numeric cessRate (percent); 'specific' carries a structured `specific` {amount, currency, unit}; 'compound' combines both; 'conditional' depends on sub-classification not encoded in the HSN. `autoApplicable` is false when an entry cannot be computed from HSN + date alone (cigarettes vary by length/filter; motor vehicles by engine/length/category) — surface those to the user for manual entry. `raw` always preserves the source text verbatim so the structured fields can be audited against it. IMPORTANT: under GST 2.0 the compensation cess was discontinued with effect from 2025-09-22 for ALL goods EXCEPT the tobacco family (cigarettes, pan masala / gutkha, chewing tobacco, zarda, bidi); non-tobacco entries therefore carry validTo 2025-09-21 so invoices dated before the cutover still resolve the historical rate while later invoices resolve to no cess. Confirm the exact notification + cutover date.",
   "entries": [
     {
       "cessId": "cess-tobacco-pan-masala",
       "description": "Pan masala",
       "hsnPattern": "2106 90 20",
-      "cessRate": 60.0,
       "cessType": "ad_valorem",
+      "cessRate": 60.0,
+      "raw": "60% ad valorem",
+      "autoApplicable": true,
       "validFrom": "2017-07-01",
       "validTo": null,
       "note": "Plus applicable GST at 28%. Tobacco family — compensation cess continues after the 2025-09-22 cutover."
@@ -19,44 +22,50 @@
       "cessId": "cess-cigarettes",
       "description": "Cigarettes containing tobacco",
       "hsnPattern": "2402 20",
-      "cessRate": null,
       "cessType": "compound",
-      "cessNote": "Compound cess: ad valorem percentage plus specific amount per thousand sticks, varies by length and filter/non-filter category. Refer to current notification.",
+      "cessRate": null,
+      "raw": "ad valorem percentage plus a specific amount per 1000 sticks; both components vary by stick length and filter / non-filter category",
+      "autoApplicable": false,
       "validFrom": "2017-07-01",
       "validTo": null,
-      "note": "Tobacco family — compensation cess continues after the 2025-09-22 cutover."
+      "note": "Tobacco family — compensation cess continues after the 2025-09-22 cutover. Not auto-applicable: requires sub-classification by length / filter — refer to the current notification."
     },
     {
       "cessId": "cess-aerated-water",
       "description": "Aerated waters, containing added sugar or other sweetening matter",
       "hsnPattern": "2202",
-      "cessRate": 12.0,
       "cessType": "ad_valorem",
+      "cessRate": 12.0,
+      "raw": "12% ad valorem",
+      "autoApplicable": true,
       "validFrom": "2017-07-01",
       "validTo": "2025-09-21",
-      "note": "Plus 28% GST. Compensation cess ended 2025-09-22 (GST 2.0). HSN 2202 is broad (includes some non-cess sub-codes such as plain fruit juices) — narrow to the specific aerated/caffeinated sub-headings where precision matters."
+      "note": "Plus 28% GST. Compensation cess ended 2025-09-22 (GST 2.0). HSN 2202 is broad (includes some non-cess sub-codes such as plain fruit juices) — narrow to the specific aerated / caffeinated sub-headings where precision matters."
     },
     {
       "cessId": "cess-motor-vehicles",
       "description": "Motor vehicles (passenger) — cess varies by sub-category",
       "hsnPattern": "8703",
+      "cessType": "conditional",
       "cessRate": null,
-      "cessType": "compound",
-      "cessNote": "Cess ranged from 1% to 22% by engine capacity, length, fuel type and SUV/luxury category — these criteria are not encoded in the HSN, so this entry is NOT auto-applicable; determine the rate manually from the notification.",
+      "raw": "1% to 22% ad valorem by engine capacity, length, fuel type and SUV / luxury category",
+      "autoApplicable": false,
       "validFrom": "2017-07-01",
       "validTo": "2025-09-21",
-      "note": "Compensation cess ended 2025-09-22 (GST 2.0). Replaces the previous two ambiguous 8703 entries (1% and 22% on the same HSN)."
+      "note": "Compensation cess ended 2025-09-22 (GST 2.0). Not auto-applicable: the bracket criteria are not encoded in the HSN — determine the rate manually from the notification. Replaces the previous two ambiguous 8703 entries (1% and 22% on the same HSN)."
     },
     {
       "cessId": "cess-coal",
       "description": "Coal, briquettes, ovoids and similar solid fuels manufactured from coal",
       "hsnPattern": "2701",
-      "cessRate": null,
       "cessType": "specific",
-      "cessNote": "₹400 per tonne (specific cess). Unit-dependent — the consuming application must reconcile the line's quantity unit with 'per tonne'.",
+      "cessRate": null,
+      "specific": { "amount": 400, "currency": "INR", "unit": "tonne" },
+      "raw": "₹400 per tonne",
+      "autoApplicable": true,
       "validFrom": "2017-07-01",
       "validTo": "2025-09-21",
-      "note": "Compensation cess ended 2025-09-22 (GST 2.0)."
+      "note": "Compensation cess ended 2025-09-22 (GST 2.0). Specific cess: the consuming application must reconcile the line's quantity unit with 'per tonne'."
     }
   ]
 }
