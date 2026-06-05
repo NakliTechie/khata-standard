@@ -55,13 +55,16 @@ khata-standard/
 │   ├── rcm-categories/          # reverse charge mechanism supply categories
 │   ├── composition-rates/       # GST composition scheme rates
 │   ├── challan-templates/       # tax payment challan templates (ITNS, PMT, etc.)
-│   └── coa-seed/                # standard Indian chart of accounts seed
+│   ├── coa-seed/                # standard Indian chart of accounts seed
+│   └── ca-corpus/               # AI semantic-search corpus (vectorized + CA-reviewed) for tax/GST lookup
 └── provenance/                  # evidence trail for every data change
     └── YYYY-MM-DD-description/
         ├── source.md            # links to official notifications
         ├── notification.pdf     # archived copy of the originating document
         └── diff-summary.md      # human-readable summary of what changed
 ```
+
+> **A note on `ca-corpus`.** Unlike the regulatory reference tables above, `ca-corpus` is a *derived, vectorized* dataset: a CA-reviewed knowledge corpus with precomputed sentence embeddings (`bge-small-en-v1.5`, int8) that powers **on-device semantic tax/GST search** in [Bahi](https://bahi.naklitechie.com)'s CA Lookup. It restates the same underlying rules as the structured datasets in a form optimized for retrieval, and is currently `preview` status — verify against the structured data and official sources before relying on it. Like every dataset here, it is SHA-256-pinned in `data/index.json`.
 
 ---
 
