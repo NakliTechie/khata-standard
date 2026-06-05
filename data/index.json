@@ -1,7 +1,7 @@
 {
   "khataStandardVersion": "0.1.0-seed",
   "formatVersion": "1.0",
-  "generatedAt": "2026-05-30T07:59:51Z",
+  "generatedAt": "2026-06-05T14:50:18Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
   "cdn": "https://naklitechie.github.io/khata-standard/data/",
@@ -84,6 +84,13 @@
       "version": "2025-01-01",
       "sha256": "sha256:e73c0efb21c85224ab2a3c21e44e30d4fdf69178bd199097d3109f90532da639",
       "status": "stable"
+    },
+    "ca-corpus": {
+      "file": "ca-corpus-20260605.json",
+      "version": "2026-06-05",
+      "sha256": "sha256:3b904cc0a6d15ff9d2ed1446ad8eeae8f77ca1d1d680b8545469ac88f5d429c6",
+      "status": "preview",
+      "note": "CA-lookup RAG corpus consumed by Bahi: 181 entries (TDS/TCS, GST goods/services/RCM, income-tax basics, compliance calendar) with bge-small-en-v1.5 int8 embeddings. AI-assembled + CA-reviewed; DRAFT reference, verify before relying. Built via Bahi corpus/build.mjs."
     }
   },
   "notes": [
