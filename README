@@ -110,6 +110,28 @@ Every update lands with:
 
 The CDN at `https://naklitechie.github.io/khata-standard/data/` is rebuilt automatically on every merge to `main` via GitHub Pages.
 
+### Automated sync from the open-source ERPs
+
+Two open-source ERPs keep Indian tax tables current for their own users: ERPNext, through
+[india-compliance](https://github.com/resilient-tech/india-compliance), and Odoo, through `l10n_in`.
+`tools/sync_upstream.py` rebuilds the TDS, TCS, GST-band and full-HSN datasets from them, and
+`.github/workflows/sync-upstream.yml` runs it every Monday at 09:00 IST:
+
+| Dataset | Primary | Fallback |
+|---|---|---|
+| tds-sections | india-compliance `tds_details.json` (+ the old-Act file and its 2025-Act migration map) | Odoo `l10n_in` tax templates |
+| tcs-sections | Odoo `l10n_in` tax templates | the current dataset |
+| gst-rates | Odoo `l10n_in` (slab check) | india-compliance tax defaults |
+| hsn-full | india-compliance `hsn_codes.json` | ERPNext v13 `hsn_code_data.json` |
+
+- The **primary** job runs first. The **fallback** job runs only if it fails, from the second, independent source. If both fail, an issue opens.
+- Every fetch also falls back from raw.githubusercontent.com to the jsDelivr mirror.
+- A change arrives as a **pull request**, never a push to `main`: a rate change flows into people's books, so a person reviews it against the notification.
+- `data/overrides/<dataset>.json` holds rows checked against the official source (the Act, a CBDT or CBIC notification), each with its citation. Overrides win over upstream. When upstream is wrong, fix it there.
+- The upstream files are GPL-3.0 (india-compliance, ERPNext) and LGPL-3.0 (Odoo); every synced file records the upstream commit and licence in `provenance/`.
+
+Per-HSN GST rates have no upstream: neither ERP ships them, and CBIC publishes them only as notification PDFs. `tools/parse_rate_notification.py` parses those (9/2025 and 19/2025 so far) into `hsn-common`. Schema for the TDS and TCS rows: [`spec/tax-sections-schema.md`](spec/tax-sections-schema.md).
+
 ---
 
 ## Verification and trust

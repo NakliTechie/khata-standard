@@ -1,0 +1,128 @@
+name: Sync tax data from upstream
+
+# Rebuilds the TDS, TCS, GST-band and HSN datasets from the open-source ERPs that maintain Indian tax
+# data (india-compliance for ERPNext, Odoo's l10n_in), applies data/overrides/, and opens a pull
+# request when anything changed. Nothing reaches main without review: a rate change flows into
+# people's books.
+#
+# Jobs:
+#   primary   first provider of every dataset (tools/sync_upstream.py --providers primary)
+#   fallback  runs only when primary fails; second provider of every dataset, an independent source
+#   alert     runs only when both fail; opens (or comments on) an issue with both logs
+#
+# Every fetch inside a job also falls back from raw.githubusercontent.com to the jsDelivr mirror.
+
+on:
+  schedule:
+    - cron: '30 3 * * 1'   # Mondays 03:30 UTC (09:00 IST)
+  workflow_dispatch:
+    inputs:
+      providers:
+        description: 'Force one provider set (primary or fallback); empty runs primary with fallback'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  primary:
+    if: github.event.inputs.providers != 'fallback'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      changed: ${{ steps.sync.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Sync (primary providers)
+        id: sync
+        run: |
+          set +e
+          python tools/sync_upstream.py --providers primary --report sync-report.json 2>&1 | tee sync.log
+          code=${PIPESTATUS[0]}
+          set -e
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" = "10" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+          if [ "$code" != "0" ] && [ "$code" != "10" ]; then exit 1; fi
+      - name: Open a pull request
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .github/scripts/open-sync-pr.py sync-report.json primary
+      - name: Record the primary failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Upstream tax-data sync: primary source failed"
+          reason=$(grep -E '^[a-z-]+: (SourceError|[A-Za-z]+Error)' sync.log | head -5 || true)
+          body="The primary sync failed on $(date -u +%Y-%m-%d); the fallback job runs next. Reason: ${reason:-see the log}. Run: $RUN_URL"
+          num=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number')
+          if [ -n "$num" ]; then gh issue comment "$num" --body "$body"; else gh issue create --title "$title" --body "$body"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sync-primary
+          path: |
+            sync.log
+            sync-report.json
+          if-no-files-found: ignore
+
+  fallback:
+    needs: primary
+    if: always() && (needs.primary.result == 'failure' || github.event.inputs.providers == 'fallback')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Sync (fallback providers)
+        id: sync
+        run: |
+          set +e
+          python tools/sync_upstream.py --providers fallback --report sync-report.json 2>&1 | tee sync.log
+          code=${PIPESTATUS[0]}
+          set -e
+          if [ "$code" = "10" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+          if [ "$code" != "0" ] && [ "$code" != "10" ]; then exit 1; fi
+      - name: Open a pull request
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .github/scripts/open-sync-pr.py sync-report.json fallback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sync-fallback
+          path: |
+            sync.log
+            sync-report.json
+          if-no-files-found: ignore
+
+  alert:
+    needs: [primary, fallback]
+    if: always() && needs.fallback.result == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Open or update the sync-failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Upstream tax-data sync failed"
+          body="Both the primary and the fallback sync failed on $(date -u +%Y-%m-%d). Logs and reports: $RUN_URL (artifacts sync-primary, sync-fallback). The published datasets are unchanged."
+          num=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number')
+          if [ -n "$num" ]; then gh issue comment "$num" --body "$body"; else gh issue create --title "$title" --body "$body" --label sync-failure || gh issue create --title "$title" --body "$body"; fi

@@ -1,0 +1,302 @@
+{
+  "note": "Hand-verified rows. Each replaces the upstream row with the same id and validFrom, or adds one upstream lacks.",
+  "remove": [],
+  "rows": [
+    {
+      "id": "194H",
+      "act": "1961",
+      "section": "194H",
+      "code": null,
+      "description": "Commission / Brokerage",
+      "rates": {
+        "individual": 5.0,
+        "other": 5.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 15000,
+        "annual": 15000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2024-09-30",
+      "successor": {
+        "individual": "1006",
+        "other": "1006"
+      },
+      "citation": "Memorandum to Finance (No. 2) Bill 2024, indiabudget.gov.in/budget2024-25/doc/memo.pdf: 194H 5% -> 2% from 2024-10-01"
+    },
+    {
+      "id": "194H",
+      "act": "1961",
+      "section": "194H",
+      "code": null,
+      "description": "Commission / Brokerage",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 15000,
+        "annual": 15000
+      },
+      "validFrom": "2024-10-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1006",
+        "other": "1006"
+      },
+      "citation": "Memorandum to Finance (No. 2) Bill 2024, indiabudget.gov.in/budget2024-25/doc/memo.pdf; threshold 15,000 -> 20,000 from 2025-04-01 per Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf"
+    },
+    {
+      "id": "194I(a)",
+      "act": "1961",
+      "section": "194I(a)",
+      "code": null,
+      "description": "Rent on plant / machinery",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1008",
+        "other": "1008"
+      },
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 194-I threshold 2,40,000 a year -> 50,000 a month or part"
+    },
+    {
+      "id": "194I(b)",
+      "act": "1961",
+      "section": "194I(b)",
+      "code": null,
+      "description": "Rent on land / building / furniture / fitting",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1009",
+        "other": "1009"
+      },
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 194-I threshold 2,40,000 a year -> 50,000 a month or part"
+    },
+    {
+      "id": "1008",
+      "act": "2025",
+      "section": "393(1) Sl. 2(ii)(a)",
+      "code": "1008",
+      "description": "Rent on plant / machinery",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026)"
+    },
+    {
+      "id": "1009",
+      "act": "2025",
+      "section": "393(1) Sl. 2(ii)(b)",
+      "code": "1009",
+      "description": "Rent on land / building / furniture / fitting",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026)"
+    },
+    {
+      "id": "393(1) Sl. 2(i)",
+      "act": "2025",
+      "section": "393(1) Sl. 2(i)",
+      "code": null,
+      "description": "Rent paid by an individual or HUF not liable to audit",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month; deduct in the last month of the year or tenancy"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026)"
+    },
+    {
+      "id": "194J",
+      "act": "1961",
+      "section": "194J",
+      "code": null,
+      "description": "Fees for professional or technical services (single section; use 194JA or 194JB)",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 30000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1027",
+        "other": "1027"
+      },
+      "citation": "Treated as 194JB (professional fees, 10%); https://www.incometaxindia.gov.in/w/section-194j"
+    },
+    {
+      "id": "194J",
+      "act": "1961",
+      "section": "194J",
+      "code": null,
+      "description": "Fees for professional or technical services (single section; use 194JA or 194JB)",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1027",
+        "other": "1027"
+      },
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 194J threshold 30,000 -> 50,000"
+    },
+    {
+      "id": "195",
+      "act": "1961",
+      "section": "195",
+      "code": null,
+      "description": "Payment to a non-resident (rate depends on the income and any treaty)",
+      "rates": {
+        "individual": null,
+        "other": null,
+        "noPan": null
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "1057",
+      "citation": "https://www.incometaxindia.gov.in/w/section-195"
+    },
+    {
+      "id": "1057",
+      "act": "2025",
+      "section": "393(2) Sl. 17",
+      "code": "1057",
+      "description": "Payment to a non-resident, other sums (rate depends on the income and any treaty)",
+      "rates": {
+        "individual": null,
+        "other": null,
+        "noPan": null
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026); code 1057 from the e-filing portal list (secondary)"
+    },
+    {
+      "id": "1058",
+      "act": "2025",
+      "section": "393(3) Sl. 1",
+      "code": "1058",
+      "description": "Lottery / Gambling Winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "Kept at 30% from india-compliance, matching 194B/194BB under the 1961 Act; Odoo's templates list 10%. Not yet checked against incometaxindia.gov.in section-393-6, 393(3) table."
+    },
+    {
+      "id": "1060",
+      "act": "2025",
+      "section": "393(3) Sl. 2",
+      "code": "1060",
+      "description": "Online Game Winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "Kept at 30% from india-compliance, matching 194B/194BB under the 1961 Act; Odoo's templates list 10%. Not yet checked against incometaxindia.gov.in section-393-6, 393(3) table."
+    },
+    {
+      "id": "1062",
+      "act": "2025",
+      "section": "393(3) Sl. 3",
+      "code": "1062",
+      "description": "Horse Race Winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "Kept at 30% from india-compliance, matching 194B/194BB under the 1961 Act; Odoo's templates list 10%. Not yet checked against incometaxindia.gov.in section-393-6, 393(3) table."
+    }
+  ]
+}

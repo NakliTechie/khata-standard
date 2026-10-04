@@ -1,0 +1,403 @@
+{
+  "datasetVersion": "2026-10-04",
+  "schema": "tcs-sections/2",
+  "description": "TCS sections, effective-dated: section 206C (1961 Act) to 2026-03-31, section 394 (2025 Act) from 2026-04-01.",
+  "publishedOn": "2026-10-04",
+  "source": "Converted from odoo by tools/sync_upstream.py, with 20 hand-verified override rows (data/overrides/tcs-sections.json).",
+  "provenance": [
+    {
+      "repo": "odoo/odoo",
+      "ref": "master",
+      "path": "addons/l10n_in/data/template/account.tax-in.csv",
+      "url": "https://raw.githubusercontent.com/odoo/odoo/master/addons/l10n_in/data/template/account.tax-in.csv",
+      "commit": "0cfa73730d060fa2df3896fd1fa942790e0a5ccb",
+      "license": "LGPL-3.0"
+    },
+    {
+      "note": "Odoo lists more than one rate for: 394(1) Sl. 1, 394(1) Sl. 2, 394(1) Sl. 4, 394(1) Sl. 5, 394(1) Sl. 7(a)"
+    }
+  ],
+  "license": "CC-BY-4.0 for this compilation; see provenance for upstream licences",
+  "entries": [
+    {
+      "id": "206C(1)-liquor",
+      "act": "1961",
+      "section": "206C(1)",
+      "code": null,
+      "description": "Alcoholic liquor for human consumption",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-1",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c; no PAN per 206CC: twice the rate or 5%"
+    },
+    {
+      "id": "206C(1)-minerals",
+      "act": "1961",
+      "section": "206C(1)",
+      "code": null,
+      "description": "Coal, lignite or iron ore",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-5",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c; no PAN per 206CC: twice the rate or 5%"
+    },
+    {
+      "id": "206C(1)-scrap",
+      "act": "1961",
+      "section": "206C(1)",
+      "code": null,
+      "description": "Scrap",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-4",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c; no PAN per 206CC: twice the rate or 5%"
+    },
+    {
+      "id": "206C(1)-tendu",
+      "act": "1961",
+      "section": "206C(1)",
+      "code": null,
+      "description": "Tendu leaves",
+      "rates": {
+        "standard": 5.0,
+        "noPan": 10.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-2",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c; no PAN per 206CC: twice the rate or 5%"
+    },
+    {
+      "id": "206C(1)-timber",
+      "act": "1961",
+      "section": "206C(1)",
+      "code": null,
+      "description": "Timber, or other forest produce under a forest lease",
+      "rates": {
+        "standard": 2.5,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-3",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c; no PAN per 206CC: twice the rate or 5%"
+    },
+    {
+      "id": "206C(1F)",
+      "act": "1961",
+      "section": "206C(1F)",
+      "code": null,
+      "description": "Motor vehicle above ₹10 lakh",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": 1000000,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-6a",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c; no PAN per 206CC: twice the rate or 5%"
+    },
+    {
+      "id": "206C(1F)-luxury",
+      "act": "1961",
+      "section": "206C(1F)",
+      "code": null,
+      "description": "Notified luxury goods above ₹10 lakh",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": 1000000,
+        "annual": null
+      },
+      "validFrom": "2025-04-22",
+      "validTo": "2026-03-31",
+      "successor": "394-6b",
+      "citation": "CBDT Notification 36/2025 of 2025-04-22 (secondary: taxguru, taxheal)"
+    },
+    {
+      "id": "206C(1G)-tour",
+      "act": "1961",
+      "section": "206C(1G)",
+      "code": null,
+      "description": "Overseas tour programme package (5% up to ₹10 lakh, 20% above)",
+      "rates": {
+        "standard": 5.0,
+        "noPan": 10.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": "20% on the part above ₹10 lakh a year"
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "394-8",
+      "citation": "https://www.incometaxindia.gov.in/w/section-206c"
+    },
+    {
+      "id": "206C(1H)",
+      "act": "1961",
+      "section": "206C(1H)",
+      "code": null,
+      "description": "Sale of goods above ₹50 lakh to one buyer",
+      "rates": {
+        "standard": 0.1,
+        "noPan": 1.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": 5000000
+      },
+      "validFrom": "2020-10-01",
+      "validTo": "2025-03-31",
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 206C(1H) omitted from 2025-04-01"
+    },
+    {
+      "id": "394-1",
+      "act": "2025",
+      "section": "394(1) Sl. 1",
+      "code": null,
+      "description": "Alcoholic liquor for human consumption",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-2",
+      "act": "2025",
+      "section": "394(1) Sl. 2",
+      "code": null,
+      "description": "Tendu leaves",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-3",
+      "act": "2025",
+      "section": "394(1) Sl. 3",
+      "code": null,
+      "description": "Timber, or other forest produce under a forest lease",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-4",
+      "act": "2025",
+      "section": "394(1) Sl. 4",
+      "code": null,
+      "description": "Scrap",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-5",
+      "act": "2025",
+      "section": "394(1) Sl. 5",
+      "code": null,
+      "description": "Coal, lignite or iron ore",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-6a",
+      "act": "2025",
+      "section": "394(1) Sl. 6(a)",
+      "code": null,
+      "description": "Motor vehicle above ₹10 lakh",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": 1000000,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-6b",
+      "act": "2025",
+      "section": "394(1) Sl. 6(b)",
+      "code": null,
+      "description": "Other notified goods above ₹10 lakh",
+      "rates": {
+        "standard": 1.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": 1000000,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-7a",
+      "act": "2025",
+      "section": "394(1) Sl. 7(a)",
+      "code": null,
+      "description": "Remittance under LRS for education or medical treatment, above ₹10 lakh",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": "above ₹10 lakh a year"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-7b",
+      "act": "2025",
+      "section": "394(1) Sl. 7(b)",
+      "code": null,
+      "description": "Remittance under LRS for other purposes, above ₹10 lakh",
+      "rates": {
+        "standard": 20.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": "above ₹10 lakh a year"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-8",
+      "act": "2025",
+      "section": "394(1) Sl. 8",
+      "code": null,
+      "description": "Overseas tour programme package",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    },
+    {
+      "id": "394-9",
+      "act": "2025",
+      "section": "394(1) Sl. 9",
+      "code": null,
+      "description": "Parking lot, toll plaza, mine or quarry lease",
+      "rates": {
+        "standard": 2.0,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null,
+        "note": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-394-6 (as amended by Finance Act 2026, in force 2026-04-01); no PAN: https://www.incometaxindia.gov.in/w/section-397-6: no PAN takes the higher of twice the rate or 5%, at most 20%"
+    }
+  ]
+}
