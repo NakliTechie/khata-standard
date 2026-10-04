@@ -1,0 +1,1806 @@
+{
+  "datasetVersion": "2026-10-04",
+  "schema": "tds-sections/2",
+  "description": "TDS sections, effective-dated: Income-tax Act 1961 sections up to 2026-03-31 and Income-tax Act 2025 sections (392/393, with return codes) from 2026-04-01. Rates are percent; thresholds rupees.",
+  "publishedOn": "2026-10-04",
+  "source": "Converted from india-compliance by tools/sync_upstream.py, with 14 hand-verified override rows (data/overrides/tds-sections.json).",
+  "provenance": [
+    {
+      "repo": "resilient-tech/india-compliance",
+      "ref": "develop",
+      "path": "india_compliance/income_tax_india/data/tds_details.json",
+      "url": "https://raw.githubusercontent.com/resilient-tech/india-compliance/develop/india_compliance/income_tax_india/data/tds_details.json",
+      "commit": "40fca75d910ca1eccb1c7dd99e08721b590cf6c0",
+      "license": "GPL-3.0"
+    },
+    {
+      "repo": "resilient-tech/india-compliance",
+      "ref": "develop",
+      "path": "india_compliance/income_tax_india/data/tds_details_old.json",
+      "url": "https://raw.githubusercontent.com/resilient-tech/india-compliance/develop/india_compliance/income_tax_india/data/tds_details_old.json",
+      "commit": "72d66d0b645a0ddedb65885ad06b7bbf5ac3b418",
+      "license": "GPL-3.0"
+    },
+    {
+      "repo": "resilient-tech/india-compliance",
+      "ref": "develop",
+      "path": "india_compliance/patches/v14/migrate_and_update_tds_section_as_per_income_tax_act_2025.py",
+      "url": "https://raw.githubusercontent.com/resilient-tech/india-compliance/develop/india_compliance/patches/v14/migrate_and_update_tds_section_as_per_income_tax_act_2025.py",
+      "commit": "43c43969cb4d2f12e6b7d5c44082d9dc8804b926",
+      "license": "GPL-3.0"
+    }
+  ],
+  "license": "CC-BY-4.0 for this compilation; see provenance for upstream licences",
+  "entries": [
+    {
+      "id": "1004",
+      "act": "2025",
+      "section": "392(7)",
+      "code": "1004",
+      "description": "Premature EPF Withdrawal",
+      "rates": {
+        "individual": 10.0,
+        "other": null,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1005",
+      "act": "2025",
+      "section": "393(1) Sl. 1(i)",
+      "code": "1005",
+      "description": "Insurance Commission",
+      "rates": {
+        "individual": 2.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1006",
+      "act": "2025",
+      "section": "393(1) Sl. 1(ii)",
+      "code": "1006",
+      "description": "Commission / Brokerage",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1008",
+      "act": "2025",
+      "section": "393(1) Sl. 2(ii)(a)",
+      "code": "1008",
+      "description": "Rent on plant / machinery",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026)"
+    },
+    {
+      "id": "1009",
+      "act": "2025",
+      "section": "393(1) Sl. 2(ii)(b)",
+      "code": "1009",
+      "description": "Rent on land / building / furniture / fitting",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026)"
+    },
+    {
+      "id": "1011",
+      "act": "2025",
+      "section": "393(1) Sl. 3(ii)",
+      "code": "1011",
+      "description": "Payments Under Specified Agreement",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1012",
+      "act": "2025",
+      "section": "393(1) Sl. 3(iii)",
+      "code": "1012",
+      "description": "Compensation on Acquiring Immovable Property",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 500000,
+        "annual": 500000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1013",
+      "act": "2025",
+      "section": "393(1) Sl. 4(i)",
+      "code": "1013",
+      "description": "Income from Mutual Fund Units",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1014",
+      "act": "2025",
+      "section": "393(1) Sl. 4(ii)",
+      "code": "1014",
+      "description": "Business Trust - Interest",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1015",
+      "act": "2025",
+      "section": "393(1) Sl. 4(ii)",
+      "code": "1015",
+      "description": "Business Trust - Dividend",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1016",
+      "act": "2025",
+      "section": "393(1) Sl. 4(ii)",
+      "code": "1016",
+      "description": "Business Trust - Rental Income",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1017",
+      "act": "2025",
+      "section": "393(1) Sl. 4(iii)",
+      "code": "1017",
+      "description": "Income from Units of Investment Fund",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1018",
+      "act": "2025",
+      "section": "393(1) Sl. 4(iv)",
+      "code": "1018",
+      "description": "Income from Securitisation Trust",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1019",
+      "act": "2025",
+      "section": "393(1) Sl. 5(i)",
+      "code": "1019",
+      "description": "Interest on Securities",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1020",
+      "act": "2025",
+      "section": "393(1) Sl. 5(ii)(a)",
+      "code": "1020",
+      "description": "Interest - Senior Citizen",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 100000,
+        "annual": 100000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1021",
+      "act": "2025",
+      "section": "393(1) Sl. 5(ii)(b)",
+      "code": "1021",
+      "description": "Interest - Bank / Post Office",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1022",
+      "act": "2025",
+      "section": "393(1) Sl. 5(iii)",
+      "code": "1022",
+      "description": "Interest Other than Securities",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1023",
+      "act": "2025",
+      "section": "393(1) Sl. 6(i)(a)",
+      "code": "1023",
+      "description": "Payment to Contractors (Individual / HUF)",
+      "rates": {
+        "individual": 1.0,
+        "other": null,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 100000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1024",
+      "act": "2025",
+      "section": "393(1) Sl. 6(i)(b)",
+      "code": "1024",
+      "description": "Payment to Contractors (Others)",
+      "rates": {
+        "individual": null,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 100000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1026",
+      "act": "2025",
+      "section": "393(1) Sl. 6(iii)(a)",
+      "code": "1026",
+      "description": "Technical Fees",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1027",
+      "act": "2025",
+      "section": "393(1) Sl. 6(iii)(b)",
+      "code": "1027",
+      "description": "Professional Fees",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1028",
+      "act": "2025",
+      "section": "393(1) Sl. 6(iii)(b)",
+      "code": "1028",
+      "description": "Director Remuneration",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1029",
+      "act": "2025",
+      "section": "393(1) Sl. 7",
+      "code": "1029",
+      "description": "Dividends",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1030",
+      "act": "2025",
+      "section": "393(1) Sl. 8(i)",
+      "code": "1030",
+      "description": "Life Insurance Policy Payout",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 100000,
+        "annual": 100000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1031",
+      "act": "2025",
+      "section": "393(1) Sl. 8(ii)",
+      "code": "1031",
+      "description": "TDS on Purchase of Goods",
+      "rates": {
+        "individual": 0.1,
+        "other": 0.1,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": 5000000,
+        "annual": 5000000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1033",
+      "act": "2025",
+      "section": "393(1) Sl. 8(iv)",
+      "code": "1033",
+      "description": "Benefit or Perquisite",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1034",
+      "act": "2025",
+      "section": "393(1) Sl. 8(iv) Note 6",
+      "code": "1034",
+      "description": "Benefit or Perquisite (Not Wholly in Cash)",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1035",
+      "act": "2025",
+      "section": "393(1) Sl. 8(v)",
+      "code": "1035",
+      "description": "E-Commerce Participant",
+      "rates": {
+        "individual": 0.1,
+        "other": 0.1,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1037",
+      "act": "2025",
+      "section": "393(1) Sl. 8(vi)",
+      "code": "1037",
+      "description": "Virtual Digital Asset Transfer",
+      "rates": {
+        "individual": 1.0,
+        "other": 1.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1038",
+      "act": "2025",
+      "section": "393(1) Sl. 8(vi) Note 6",
+      "code": "1038",
+      "description": "Virtual Digital Asset Transfer (Not Wholly in Cash)",
+      "rates": {
+        "individual": 1.0,
+        "other": 1.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1057",
+      "act": "2025",
+      "section": "393(2) Sl. 17",
+      "code": "1057",
+      "description": "Payment to a non-resident, other sums (rate depends on the income and any treaty)",
+      "rates": {
+        "individual": null,
+        "other": null,
+        "noPan": null
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026); code 1057 from the e-filing portal list (secondary)"
+    },
+    {
+      "id": "1058",
+      "act": "2025",
+      "section": "393(3) Sl. 1",
+      "code": "1058",
+      "description": "Lottery / Gambling Winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "Kept at 30% from india-compliance, matching 194B/194BB under the 1961 Act; Odoo's templates list 10%. Not yet checked against incometaxindia.gov.in section-393-6, 393(3) table."
+    },
+    {
+      "id": "1059",
+      "act": "2025",
+      "section": "393(3) Sl. 1 Note 2",
+      "code": "1059",
+      "description": "Lottery / Gambling Winnings (Not Wholly in Cash)",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1060",
+      "act": "2025",
+      "section": "393(3) Sl. 2",
+      "code": "1060",
+      "description": "Online Game Winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "Kept at 30% from india-compliance, matching 194B/194BB under the 1961 Act; Odoo's templates list 10%. Not yet checked against incometaxindia.gov.in section-393-6, 393(3) table."
+    },
+    {
+      "id": "1061",
+      "act": "2025",
+      "section": "393(3) Sl. 2 Note 2",
+      "code": "1061",
+      "description": "Online Game Winnings (Not Wholly in Cash)",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1062",
+      "act": "2025",
+      "section": "393(3) Sl. 3",
+      "code": "1062",
+      "description": "Horse Race Winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "Kept at 30% from india-compliance, matching 194B/194BB under the 1961 Act; Odoo's templates list 10%. Not yet checked against incometaxindia.gov.in section-393-6, 393(3) table."
+    },
+    {
+      "id": "1063",
+      "act": "2025",
+      "section": "393(3) Sl. 4",
+      "code": "1063",
+      "description": "Lottery Commission",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1064",
+      "act": "2025",
+      "section": "393(3) Sl. 5(a)",
+      "code": "1064",
+      "description": "Cash Withdrawal - Co-operative Society",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000000,
+        "annual": 30000000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1065",
+      "act": "2025",
+      "section": "393(3) Sl. 5(b)",
+      "code": "1065",
+      "description": "Cash Withdrawal",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000000,
+        "annual": 10000000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1066",
+      "act": "2025",
+      "section": "393(3) Sl. 6",
+      "code": "1066",
+      "description": "NSS Payments",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 2500,
+        "annual": 2500
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "1067",
+      "act": "2025",
+      "section": "393(3) Sl. 7",
+      "code": "1067",
+      "description": "Partner Remuneration",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "192A",
+      "act": "1961",
+      "section": "192A",
+      "code": null,
+      "description": "Premature EPF withdrawal",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1004"
+      }
+    },
+    {
+      "id": "192A",
+      "act": "1961",
+      "section": "192A",
+      "code": null,
+      "description": "Premature EPF withdrawal",
+      "rates": {
+        "individual": 10.0,
+        "other": 0.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1004"
+      }
+    },
+    {
+      "id": "193",
+      "act": "1961",
+      "section": "193",
+      "code": null,
+      "description": "Interest on Securities",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1019",
+        "other": "1019"
+      }
+    },
+    {
+      "id": "193",
+      "act": "1961",
+      "section": "193",
+      "code": null,
+      "description": "Interest on Securities",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1019",
+        "other": "1019"
+      }
+    },
+    {
+      "id": "194",
+      "act": "1961",
+      "section": "194",
+      "code": null,
+      "description": "Dividends",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 2500,
+        "annual": 2500
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2024-03-31",
+      "successor": {
+        "individual": "1029",
+        "other": "1029"
+      }
+    },
+    {
+      "id": "194",
+      "act": "1961",
+      "section": "194",
+      "code": null,
+      "description": "Dividends",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 5000,
+        "annual": 5000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1029",
+        "other": "1029"
+      }
+    },
+    {
+      "id": "194",
+      "act": "1961",
+      "section": "194",
+      "code": null,
+      "description": "Dividends",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1029",
+        "other": "1029"
+      }
+    },
+    {
+      "id": "194A",
+      "act": "1961",
+      "section": "194A",
+      "code": null,
+      "description": "Interest from other than interest on securities",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 5000,
+        "annual": 5000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1022",
+        "other": "1022"
+      }
+    },
+    {
+      "id": "194A",
+      "act": "1961",
+      "section": "194A",
+      "code": null,
+      "description": "Interest from other than interest on securities",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1022",
+        "other": "1022"
+      }
+    },
+    {
+      "id": "194B",
+      "act": "1961",
+      "section": "194B",
+      "code": null,
+      "description": "Income from lottery winnings, card games, crossword puzzles, and other games of any type",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": 10000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1058",
+        "other": "1058"
+      }
+    },
+    {
+      "id": "194B",
+      "act": "1961",
+      "section": "194B",
+      "code": null,
+      "description": "Income from lottery winnings, card games, crossword puzzles, and other games of any type",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": 10000,
+        "annual": 10000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1058",
+        "other": "1058"
+      }
+    },
+    {
+      "id": "194BB",
+      "act": "1961",
+      "section": "194BB",
+      "code": null,
+      "description": "Income from horse race winnings",
+      "rates": {
+        "individual": 30.0,
+        "other": 30.0,
+        "noPan": 30.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": 10000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1062",
+        "other": "1062"
+      }
+    },
+    {
+      "id": "194C",
+      "act": "1961",
+      "section": "194C",
+      "code": null,
+      "description": "Payment to Contractors (Single / Aggregate)",
+      "rates": {
+        "individual": 1.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 100000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1023",
+        "other": "1024"
+      }
+    },
+    {
+      "id": "194D",
+      "act": "1961",
+      "section": "194D",
+      "code": null,
+      "description": "Insurance Commission",
+      "rates": {
+        "individual": 5.0,
+        "other": 5.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 15000,
+        "annual": 15000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1005",
+        "other": "1005"
+      }
+    },
+    {
+      "id": "194D",
+      "act": "1961",
+      "section": "194D",
+      "code": null,
+      "description": "Insurance Commission",
+      "rates": {
+        "individual": 2.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1005",
+        "other": "1005"
+      }
+    },
+    {
+      "id": "194DA",
+      "act": "1961",
+      "section": "194DA",
+      "code": null,
+      "description": "Non-exempt payments made under a life insurance policy",
+      "rates": {
+        "individual": 1.0,
+        "other": 1.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 100000,
+        "annual": 100000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2024-03-31",
+      "successor": {
+        "individual": "1030",
+        "other": "1030"
+      }
+    },
+    {
+      "id": "194DA",
+      "act": "1961",
+      "section": "194DA",
+      "code": null,
+      "description": "Non-exempt payments made under a life insurance policy",
+      "rates": {
+        "individual": 5.0,
+        "other": 5.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 100000,
+        "annual": 100000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1030",
+        "other": "1030"
+      }
+    },
+    {
+      "id": "194DA",
+      "act": "1961",
+      "section": "194DA",
+      "code": null,
+      "description": "Non-exempt payments made under a life insurance policy",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 100000,
+        "annual": 100000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1030",
+        "other": "1030"
+      }
+    },
+    {
+      "id": "194EE",
+      "act": "1961",
+      "section": "194EE",
+      "code": null,
+      "description": "Payment of amount standing to the credit of a person under National Savings Scheme (NSS)",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 2500,
+        "annual": 2500
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1066",
+        "other": "1066"
+      }
+    },
+    {
+      "id": "194F",
+      "act": "1961",
+      "section": "194F",
+      "code": null,
+      "description": "Payment for the repurchase of the unit by Unit Trust of India (UTI) or a Mutual Fund",
+      "rates": {
+        "individual": 20.0,
+        "other": 20.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2026-03-31"
+    },
+    {
+      "id": "194G",
+      "act": "1961",
+      "section": "194G",
+      "code": null,
+      "description": "Payments or commission on sale of lottery tickets",
+      "rates": {
+        "individual": 5.0,
+        "other": 5.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 15000,
+        "annual": 15000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1063",
+        "other": "1063"
+      }
+    },
+    {
+      "id": "194G",
+      "act": "1961",
+      "section": "194G",
+      "code": null,
+      "description": "Payments or commission on sale of lottery tickets",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1063",
+        "other": "1063"
+      }
+    },
+    {
+      "id": "194H",
+      "act": "1961",
+      "section": "194H",
+      "code": null,
+      "description": "Commission / Brokerage",
+      "rates": {
+        "individual": 5.0,
+        "other": 5.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 15000,
+        "annual": 15000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2024-09-30",
+      "successor": {
+        "individual": "1006",
+        "other": "1006"
+      },
+      "citation": "Memorandum to Finance (No. 2) Bill 2024, indiabudget.gov.in/budget2024-25/doc/memo.pdf: 194H 5% -> 2% from 2024-10-01"
+    },
+    {
+      "id": "194H",
+      "act": "1961",
+      "section": "194H",
+      "code": null,
+      "description": "Commission / Brokerage",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 15000,
+        "annual": 15000
+      },
+      "validFrom": "2024-10-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1006",
+        "other": "1006"
+      },
+      "citation": "Memorandum to Finance (No. 2) Bill 2024, indiabudget.gov.in/budget2024-25/doc/memo.pdf; threshold 15,000 -> 20,000 from 2025-04-01 per Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf"
+    },
+    {
+      "id": "194H",
+      "act": "1961",
+      "section": "194H",
+      "code": null,
+      "description": "Commission / Brokerage",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 20000,
+        "annual": 20000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1006",
+        "other": "1006"
+      }
+    },
+    {
+      "id": "194I(a)",
+      "act": "1961",
+      "section": "194I(a)",
+      "code": null,
+      "description": "Rent on plant / machinery",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 180000,
+        "annual": 180000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2024-03-31",
+      "successor": {
+        "individual": "1008",
+        "other": "1008"
+      }
+    },
+    {
+      "id": "194I(a)",
+      "act": "1961",
+      "section": "194I(a)",
+      "code": null,
+      "description": "Rent on plant / machinery",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 240000,
+        "annual": 240000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1008",
+        "other": "1008"
+      }
+    },
+    {
+      "id": "194I(a)",
+      "act": "1961",
+      "section": "194I(a)",
+      "code": null,
+      "description": "Rent on plant / machinery",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1008",
+        "other": "1008"
+      },
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 194-I threshold 2,40,000 a year -> 50,000 a month or part"
+    },
+    {
+      "id": "194I(b)",
+      "act": "1961",
+      "section": "194I(b)",
+      "code": null,
+      "description": "Rent on land / building / furniture / fitting",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 180000,
+        "annual": 180000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2024-03-31",
+      "successor": {
+        "individual": "1009",
+        "other": "1009"
+      }
+    },
+    {
+      "id": "194I(b)",
+      "act": "1961",
+      "section": "194I(b)",
+      "code": null,
+      "description": "Rent on land / building / furniture / fitting",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 240000,
+        "annual": 240000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1009",
+        "other": "1009"
+      }
+    },
+    {
+      "id": "194I(b)",
+      "act": "1961",
+      "section": "194I(b)",
+      "code": null,
+      "description": "Rent on land / building / furniture / fitting",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month"
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1009",
+        "other": "1009"
+      },
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 194-I threshold 2,40,000 a year -> 50,000 a month or part"
+    },
+    {
+      "id": "194IA",
+      "act": "1961",
+      "section": "194IA",
+      "code": null,
+      "description": "Payment for transfer of immovable property other than agricultural land",
+      "rates": {
+        "individual": 1.0,
+        "other": 1.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 5000000,
+        "annual": 5000000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "393(1) Sl.3(i)",
+        "other": "393(1) Sl.3(i)"
+      }
+    },
+    {
+      "id": "194J",
+      "act": "1961",
+      "section": "194J",
+      "code": null,
+      "description": "Fees for professional or technical services (single section; use 194JA or 194JB)",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 30000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1027",
+        "other": "1027"
+      },
+      "citation": "Treated as 194JB (professional fees, 10%); https://www.incometaxindia.gov.in/w/section-194j"
+    },
+    {
+      "id": "194J",
+      "act": "1961",
+      "section": "194J",
+      "code": null,
+      "description": "Fees for professional or technical services (single section; use 194JA or 194JB)",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1027",
+        "other": "1027"
+      },
+      "citation": "Memorandum to Finance Bill 2025, indiabudget.gov.in/budget2025-26/doc/memo.pdf: 194J threshold 30,000 -> 50,000"
+    },
+    {
+      "id": "194JA",
+      "act": "1961",
+      "section": "194JA",
+      "code": null,
+      "description": "Technical Fees",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 30000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1026",
+        "other": "1026"
+      }
+    },
+    {
+      "id": "194JA",
+      "act": "1961",
+      "section": "194JA",
+      "code": null,
+      "description": "Technical Fees",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1026",
+        "other": "1026"
+      }
+    },
+    {
+      "id": "194JB",
+      "act": "1961",
+      "section": "194JB",
+      "code": null,
+      "description": "Professional Fees",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 30000,
+        "annual": 30000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1027",
+        "other": "1027"
+      }
+    },
+    {
+      "id": "194JB",
+      "act": "1961",
+      "section": "194JB",
+      "code": null,
+      "description": "Professional Fees",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": 50000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1027",
+        "other": "1027"
+      }
+    },
+    {
+      "id": "194LA",
+      "act": "1961",
+      "section": "194LA",
+      "code": null,
+      "description": "Payment in respect of compensation on acquiring certain immovable property",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 250000,
+        "annual": 250000
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1012",
+        "other": "1012"
+      }
+    },
+    {
+      "id": "194LA",
+      "act": "1961",
+      "section": "194LA",
+      "code": null,
+      "description": "Payment in respect of compensation on acquiring certain immovable property",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 500000,
+        "annual": 500000
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1012",
+        "other": "1012"
+      }
+    },
+    {
+      "id": "194LBB",
+      "act": "1961",
+      "section": "194LBB",
+      "code": null,
+      "description": "Payment to a unitholder in respect of units of an investment fund",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2024-04-01",
+      "validTo": "2025-03-31",
+      "successor": {
+        "individual": "1017",
+        "other": "1017"
+      }
+    },
+    {
+      "id": "194LBB",
+      "act": "1961",
+      "section": "194LBB",
+      "code": null,
+      "description": "Payment to a unitholder in respect of units of an investment fund",
+      "rates": {
+        "individual": 10.0,
+        "other": 10.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 1,
+        "annual": 1
+      },
+      "validFrom": "2025-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1017",
+        "other": "1017"
+      }
+    },
+    {
+      "id": "194Q",
+      "act": "1961",
+      "section": "194Q",
+      "code": null,
+      "description": "TDS on Purchasing",
+      "rates": {
+        "individual": 0.1,
+        "other": 0.1,
+        "noPan": 5.0
+      },
+      "threshold": {
+        "single": 5000000,
+        "annual": 5000000
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": {
+        "individual": "1031",
+        "other": "1031"
+      }
+    },
+    {
+      "id": "195",
+      "act": "1961",
+      "section": "195",
+      "code": null,
+      "description": "Payment to a non-resident (rate depends on the income and any treaty)",
+      "rates": {
+        "individual": null,
+        "other": null,
+        "noPan": null
+      },
+      "threshold": {
+        "single": null,
+        "annual": null
+      },
+      "validFrom": "2023-04-01",
+      "validTo": "2026-03-31",
+      "successor": "1057",
+      "citation": "https://www.incometaxindia.gov.in/w/section-195"
+    },
+    {
+      "id": "393(1) Sl. 2(i)",
+      "act": "2025",
+      "section": "393(1) Sl. 2(i)",
+      "code": null,
+      "description": "Rent paid by an individual or HUF not liable to audit",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 50000,
+        "annual": null,
+        "note": "₹50,000 a month or part of a month; deduct in the last month of the year or tenancy"
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null,
+      "citation": "https://www.incometaxindia.gov.in/w/section-393-6 (Income-tax Act 2025 as amended by Finance Act 2026)"
+    },
+    {
+      "id": "393(1) Sl. 3(i)",
+      "act": "2025",
+      "section": "393(1) Sl. 3(i)",
+      "code": null,
+      "description": "Payment for Transfer of Immovable Property",
+      "rates": {
+        "individual": 1.0,
+        "other": 1.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 5000000,
+        "annual": 5000000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    },
+    {
+      "id": "393(1) Sl. 6(ii)",
+      "act": "2025",
+      "section": "393(1) Sl. 6(ii)",
+      "code": null,
+      "description": "Payment to Contractors and Professionals by Individual / HUF",
+      "rates": {
+        "individual": 2.0,
+        "other": 2.0,
+        "noPan": 20.0
+      },
+      "threshold": {
+        "single": 5000000,
+        "annual": 5000000
+      },
+      "validFrom": "2026-04-01",
+      "validTo": null
+    }
+  ]
+}

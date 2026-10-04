@@ -1,7 +1,7 @@
 {
   "khataStandardVersion": "0.1.0-seed",
   "formatVersion": "1.0",
-  "generatedAt": "2026-06-05T14:50:42Z",
+  "generatedAt": "2026-10-04T17:07:35Z",
   "description": "Manifest of current reference data versions. Bahi and other .khata implementations fetch this file to check for updates and verify dataset hashes.",
   "repo": "https://github.com/NakliTechie/khata-standard",
   "cdn": "https://naklitechie.github.io/khata-standard/data/",
@@ -13,25 +13,28 @@
       "status": "stable"
     },
     "gst-rates": {
-      "file": "gst-rates-20170701.json",
-      "version": "2017-07-01",
-      "sha256": "sha256:be261f3b96f1d484430bcf9cb345edd6b1869a0ebc54643fedaabdfc2a97501a",
-      "status": "stable",
-      "note": "Rate bands only; HSN-to-rate assignments are in the hsn dataset. STALE: predates the GST 2.0 slab restructuring (w.e.f. 2025-09-22) — needs a re-import of the revised rate schedule before production use."
+      "file": "gst-rates-20261004.json",
+      "version": "2026-10-04",
+      "sha256": "sha256:a2c5891a4f7046a3be1cd4b403cdf2f8f4991e8960f25a1ce0d9ad039f915620",
+      "status": "synced",
+      "note": "Synced 2026-10-04 from odoo (tools/sync_upstream.py): 8 rows, 8 hand-verified overrides.",
+      "schema": "gst-rates/2"
     },
     "hsn-common": {
-      "file": "hsn-common-20230401.json",
-      "version": "2023-04-01",
-      "sha256": "sha256:7ff4af81b45c5139d17cac98d7b07cd267469eac031ff7ee184d98feb0077a6c",
-      "status": "starter",
-      "note": "Imported from the CBIC GST rate schedule on 2026-04-07 via tools/scrape-cbic-hsn.py. 1518 goods + 82 SAC + 78 cess entries (~430 KB). Source revision date 2023-04-01 — over 2 years stale at import time. Verify against current CBIC rates before production use. Full provenance in provenance/2026-04-07-cbic-hsn-import/."
+      "file": "hsn-common-20260201.json",
+      "version": "2026-02-01",
+      "sha256": "sha256:89168c41416a895bf4e0ea017d2c1315339d1eb235d4047037bd3eb110826be2",
+      "status": "parsed",
+      "note": "Goods rates parsed from CBIC Notifications 9/2025 (GST 2.0, 2025-09-22) and 19/2025 (2026-02-01) by tools/parse_rate_notification.py, with pre-2025 rates from the 2023 schedule. Codes under more than one rate are conditional (no automatic rate). Nil goods (10/2025) and services changes (15/2025) not parsed. Provenance: provenance/2026-10-04-gst-2-0-rates/.",
+      "schema": "hsn-common/2"
     },
     "hsn-full": {
-      "file": null,
-      "version": null,
-      "sha256": null,
-      "status": "not_yet_published",
-      "note": "Full ~15K HSN set to be published after sourcing from CBIC"
+      "file": "hsn-full-20261004.json",
+      "version": "2026-10-04",
+      "sha256": "sha256:bd2b86ef8f511a0bef2460e93ac2def6805d1c69bcd7c3f6b2e8568ca2d4d8ed",
+      "status": "synced",
+      "note": "Synced 2026-10-04 from india-compliance (tools/sync_upstream.py): 18687 rows, 0 hand-verified overrides.",
+      "schema": "hsn-full/2"
     },
     "sac": {
       "file": "sac-20250101.json",
@@ -41,24 +44,27 @@
       "note": "Starter set of major service categories; needs expansion"
     },
     "cess": {
-      "file": "cess-20250922.json",
-      "version": "2025-09-22",
-      "sha256": "sha256:91461774313d5e40a93fbd8ab0f02f1f877479049d5243bcecd109f5f1d1250f",
+      "file": "cess-20260201.json",
+      "version": "2026-02-01",
+      "sha256": "sha256:010da1d9e1a0e8b30a439894059c4be4cabf0e67a612900f3d3175167e64ca30",
       "status": "starter",
-      "note": "GST 2.0 cess discontinuation (w.e.f. 2025-09-22): non-tobacco entries carry validTo 2025-09-21; the two ambiguous 8703 car entries consolidated into one non-auto-applicable entry. Now uses the structured cess schema (spec/cess-schema.md): cessType + cessRate + specific{amount,unit} + raw + autoApplicable. Still a starter set — cars/cigarettes/coal need granular sub-classification."
+      "note": "Compensation cess ended for all goods: non-tobacco on 2025-09-22 (02/2025-CC(Rate)), pan masala and tobacco on 2026-02-01 (03/2025-CC(Rate)). Kept for documents dated before those days."
     },
     "tds-sections": {
-      "file": "tds-sections-20250101.json",
-      "version": "2025-01-01",
-      "sha256": "sha256:c192c0b86eee29667ad79bf1482fef61f30de653ee4a61fd11234a339c95df8e",
-      "status": "starter",
-      "note": "Most common sections; not exhaustive"
+      "file": "tds-sections-20261004.json",
+      "version": "2026-10-04",
+      "sha256": "sha256:a05299ebda82000e8a2ac21dd2125dcd162affea25dbf94dcb6fa36a0f8041d5",
+      "status": "synced",
+      "note": "Synced 2026-10-04 from india-compliance (tools/sync_upstream.py): 88 rows, 14 hand-verified overrides.",
+      "schema": "tds-sections/2"
     },
     "tcs-sections": {
-      "file": "tcs-sections-20250101.json",
-      "version": "2025-01-01",
-      "sha256": "sha256:2489ce4f541cb2a0f8fd286b5e07ca6ac498336a5354c8bcca827b44172d58e7",
-      "status": "starter"
+      "file": "tcs-sections-20261004.json",
+      "version": "2026-10-04",
+      "sha256": "sha256:a89447b74a3bd7a66d418ce91f90854a29e3f93a9f79008d959e656fdee86cb5",
+      "status": "synced",
+      "schema": "tcs-sections/2",
+      "note": "Synced 2026-10-04 from odoo (tools/sync_upstream.py): 20 rows, 20 hand-verified overrides."
     },
     "rcm-categories": {
       "file": "rcm-categories-20250101.json",

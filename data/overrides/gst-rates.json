@@ -1,0 +1,92 @@
+{
+  "note": "GST rate bands. Bahi's rateIds; a band's validTo ends it for new documents, never for stored ones.",
+  "ignoreUpstreamSlabs": [
+    {
+      "rate": 1,
+      "reason": "Odoo template rate, not a GST slab"
+    },
+    {
+      "rate": 2,
+      "reason": "Odoo template rate, not a GST slab"
+    },
+    {
+      "rate": 14,
+      "reason": "Odoo component (CGST or SGST half of 28%)"
+    }
+  ],
+  "remove": [],
+  "rows": [
+    {
+      "rateId": "gst-0",
+      "rate": 0,
+      "type": "nil",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Nil-rated / exempt",
+      "citation": "CBIC Notification 2/2017 and 10/2025-Central Tax (Rate)"
+    },
+    {
+      "rateId": "gst-0p25",
+      "rate": 0.25,
+      "type": "special",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Rough diamonds and precious stones",
+      "citation": "CBIC Notification 1/2017-Central Tax (Rate); CBIC Notification 9/2025-Central Tax (Rate) of 2025-09-17, in force 2025-09-22 Schedule V"
+    },
+    {
+      "rateId": "gst-3",
+      "rate": 3,
+      "type": "special",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Gold, silver, jewellery",
+      "citation": "CBIC Notification 1/2017-Central Tax (Rate); CBIC Notification 9/2025-Central Tax (Rate) of 2025-09-17, in force 2025-09-22 Schedule IV"
+    },
+    {
+      "rateId": "gst-5",
+      "rate": 5,
+      "type": "standard",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Merit rate",
+      "citation": "CBIC Notification 1/2017-Central Tax (Rate); CBIC Notification 9/2025-Central Tax (Rate) of 2025-09-17, in force 2025-09-22 Schedule I"
+    },
+    {
+      "rateId": "gst-12",
+      "rate": 12,
+      "type": "standard",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Standard rate; from 2025-09-22 only bricks and tiles (Notification 14/2025)",
+      "citation": "CBIC Notification 1/2017-Central Tax (Rate); CBIC Notification 14/2025-Central Tax (Rate)"
+    },
+    {
+      "rateId": "gst-18",
+      "rate": 18,
+      "type": "standard",
+      "validFrom": "2017-07-01",
+      "validTo": null,
+      "description": "Standard rate",
+      "citation": "CBIC Notification 1/2017-Central Tax (Rate); CBIC Notification 9/2025-Central Tax (Rate) of 2025-09-17, in force 2025-09-22 Schedule II"
+    },
+    {
+      "rateId": "gst-28",
+      "rate": 28,
+      "type": "standard",
+      "validFrom": "2017-07-01",
+      "validTo": "2026-01-31",
+      "description": "Higher rate; from 2025-09-22 only pan masala and tobacco",
+      "citation": "CBIC Notification 9/2025-Central Tax (Rate) of 2025-09-17, in force 2025-09-22 Schedule VII; CBIC Notification 19/2025-Central Tax (Rate) of 2025-12-31: Schedule VII (28%) omitted from 2026-02-01"
+    },
+    {
+      "rateId": "gst-40",
+      "rate": 40,
+      "type": "special",
+      "validFrom": "2025-09-22",
+      "validTo": null,
+      "description": "Demerit rate: luxury cars, aerated drinks, pan masala and tobacco",
+      "citation": "CBIC Notification 9/2025-Central Tax (Rate) of 2025-09-17, in force 2025-09-22 Schedule III; CBIC Notification 19/2025-Central Tax (Rate) of 2025-12-31: Schedule VII (28%) omitted from 2026-02-01"
+    }
+  ]
+}

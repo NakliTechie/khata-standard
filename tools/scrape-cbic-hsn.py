@@ -2,6 +2,10 @@
 """
 scrape-cbic-hsn.py
 
+SUPERSEDED (2026-10-04): cbic-gst.gov.in/gst-goods-services-rates.html no longer carries the rate
+tables (it parses to 0 rows and still says "as on 2023-04-01"). Rates now come from the notification
+PDFs via tools/parse_rate_notification.py. Kept for the 2026-04-07 import's provenance.
+
 Fetch the CBIC GST rate schedule HTML page, parse the embedded Goods and
 Services rate tables, and emit a JSON dataset matching the schema used by
 data/hsn-common/.

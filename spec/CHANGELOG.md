@@ -12,6 +12,20 @@ Each spec file also carries a `**Last revised:**` line in its header pointing ba
 
 ## 1.0-draft
 
+### 2026-10-04 — tax-section schema 2, the Income-tax Act 2025, GST 2.0 rates; upstream sync
+
+**`tax-sections-schema.md`** (new) — TDS and TCS rows are effective-dated, one per section per period, with the Act they belong to (`1961` or `2025`), the 2025-Act return code, rates per payee class (`individual` / `other` / `noPan`, percent) and thresholds (`single` / `annual` / `note`, rupees). A 1961 row names its `successor`, so a party saved with `194C` resolves to `1023` or `1024` after 2026-04-01. Replaces the schema-1 `sections` shape.
+
+Data, all new files (the old ones stay for apps that pinned them):
+- `tds-sections-20261004.json` — 1961-Act rows to 2026-03-31 and Income-tax Act 2025 rows (392/393) from 2026-04-01. Corrections over upstream: 194H 5% → 2% on 2024-10-01; rent thresholds monthly from FY 2025-26; the single `194J` kept for older books.
+- `tcs-sections-20261004.json` — 206C rows to 2026-03-31 (206C(1H) ended 2025-03-31) and section 394 rows from 2026-04-01 at the Finance Act 2026 rates.
+- `gst-rates-20261004.json` — the 40% band from 2025-09-22; 28% ends 2026-01-31; 12% stays (bricks and tiles). Uses the rate ids implementations already store (`gst-18`, …).
+- `hsn-common-20260201.json` (schema `hsn-common/2`) — per-HSN rate histories from Notifications 9/2025 and 19/2025.
+- `hsn-full-20261004.json` (first publication) — 18,687 HSN codes with descriptions.
+- `cess-20260201.json` — compensation cess on pan masala and tobacco ends 2026-01-31.
+
+**Tools** — `tools/sync_upstream.py` and the `sync-upstream.yml` workflow (primary, fallback, alert; opens a PR), and `tools/parse_rate_notification.py`.
+
 ### 2026-05-30 — spec aligned to the reference implementation (schema 12)
 
 Now that Bahi exercises the format at scale, the spec tracks its actual output rather than a parallel abstract model — simpler and clearer for any implementer. *(Resolves #3 and #4.)*
